@@ -32,7 +32,7 @@ namespace FishWithAuth.Controllers
         public ApplicationDbContext db = ApplicationDbContext.Create();
 
         public ActionResult Index()
-        {а
+        {
             return View();
         }
 
