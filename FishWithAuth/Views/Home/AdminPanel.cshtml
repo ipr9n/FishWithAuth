@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+    @Html.ActionLink("Добавить озеро", "CreateLake", "Home", new object { },
+new { @class = "dropdown-item" })
+    @Html.ActionLink("Добавить рыбу", "CreateFish", "Home", new object { },
+new { @class = "dropdown-item" })
+    @Html.ActionLink("Добавить лодку", "CreateBoat", "Home", new object { },
+new { @class = "dropdown-item" })
+    @Html.ActionLink("Добавить удочку", "CreateRod", "Home", new object { },
+new { @class = "dropdown-item" })
+    @Html.ActionLink("Добавить класс удочек", "CreateRodType", "Home", new object { },
+new { @class = "dropdown-item" })
