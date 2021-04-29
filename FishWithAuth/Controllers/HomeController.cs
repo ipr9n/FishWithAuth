@@ -177,6 +177,49 @@ namespace FishWithAuth.Controllers
             return View("CreateBoat", boatView);
         }
 
+        /*
+         * Добавить страницу HTML:
+         * Views -> Home -> RMB ( Add View ))
+         * Чтобы зайти на эту страницу:
+         * Заходим в Controllers ->  HomeController
+         * Создаем метод который называется так же как   View!!! Обязательно
+         * Код метода:
+         * 
+                  public ActionResult Name()
+             {
+                return View();
+             }
+         *
+         *
+         * Где Name - название View
+         * 
+         *  Путь к странице будет "https://localhost:44314/Home/Name"
+         *  
+         *  Где Name -  название View и метода
+         *  
+         *  Страница с  навбаром, футером и хедером = Views/Shared/_Layout
+         *  
+         *  На этой странице можешь увидеть строчки:
+            @Scripts.Render("~/bundles/modernizr")
+            @Styles.Render("~/Content/css")
+        *
+        *  Этими строчками подключаются  скрипты и стили для страниц
+        *  Эти стили находятся в файле  App_Start/BundleConfig.cs
+        *  Для  примера стиль из этого файла, который используется
+        *   
+          bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
+        *
+        *
+        *   Первая строчка - псевдоним ( ~/Content/css ), который мы используем при подключении скрипта ( который используется в Views/Shared/_Layout )
+        *   На  второй и третей строчке  -   путь к файлам стилей ( можешь добавить свои по примеру )
+        *   
+        *   
+        *   После запуска проекта (  на F5 ). Если изменяешь файлы с Html ( в папке Views ) не обязательно заново собирать проект, можно просто сохранить файл (  CTRL+S )
+        *   и перезагрузить страницу в браузере. Со стилями не проверял, возможно так же работает
+         */
+
         public ActionResult Lakes()
         {
             ViewBag.IsAdmin = IsAdmin;
