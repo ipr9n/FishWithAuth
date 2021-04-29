@@ -1,0 +1,50 @@
+﻿@model FishWithAuth.EF.Entities.Fish
+
+@{
+    ViewBag.Title = "Fish";
+}
+<div class="my_container">
+    <div class="card_img_block">
+        @Html.HiddenFor(model=>model.Id)
+        <img src=@Model.Image />
+    </div>
+    <div class="name_block">
+        <h2>@Model.Name</h2>
+    </div>
+    <hr class="hr_card" />
+    <div class="description_of_card">
+        <p>@Model.Description</p>
+    </div>
+
+    <hr class="hr_card" />
+
+    <div class="references_block">
+        <div class="reference">
+            <h2 class="name_of_reference">Озёра:</h2>
+            <ul class="ul_references">
+                @foreach (var lake in Model.Lakes)
+                {
+                    <li>@Html.ActionLink(@lake.Name, $"Lake/{lake.Id}", "Home", new object { }, new { @class = "" })</li>
+                }
+            </ul>
+        </div>
+        <div class="reference">
+            <h2 class="name_of_reference">Озёра:</h2>
+            <ul class="ul_references">
+                @foreach (var rod in Model.FishRods)
+                {
+                    <li>@rod.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="btns_of_card">
+        <div class="update_card_btn">
+            @Html.ActionLink("Изменить", $"UpdateFish/{Model.Id}", "Home", new object { }, new { @class = "" })
+        </div>
+    </div>
+
+
+</div>
+

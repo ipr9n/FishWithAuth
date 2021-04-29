@@ -9,7 +9,7 @@
 <button type="button" id="createLakeBtn" class="btn btn-outline-primary col-md-12">Добавить озеро</button>
 <div id="createLake" style="display: none;">@Html.Partial("CreateLake", new CreateLakeViewModel())</div>
 <button type="button" id="createFishBtn" class="btn btn-outline-primary col-md-12">Добавить рыбу</button>
-<div id="createFish" style="display: none">@Html.Partial("CreateFish", new CreateFishViewModel())</div>
+<div id="createFish" style="display: none">@Html.Partial("CreateFish", new CreateFishViewModel() {Lakes = Model.Lakes })</div>
 <button type="button" id="createBoatBtn" class="btn btn-outline-primary col-md-12">Добавить лодку</button>
 <div id="createBoat" style="display: none">@Html.Partial("CreateBoat", new CreateBoatViewModel())</div>
 <button type="button" id="createRodBtn" class="btn btn-outline-primary col-md-12">Добавить удочку</button>
@@ -33,15 +33,15 @@
 
 <script>
     $('#createLakeBtn').click(function () {
-        $('#createLake').toggle()
+        $('#createLake').toggle(1000)
     })
     $('#createFishBtn').click(function () {
-        $('#createFish').toggle()
+        $('#createFish').toggle(1000)
     })
     $('#createBoatBtn').click(function () {
-        $('#createBoat').toggle()
+        $('#createBoat').toggle(1000)
     })
     $('#createRodBtn').click(function () {
-        $('#createRod').toggle()
+        $('#createRod').toggle(1000)
     })
 </script>

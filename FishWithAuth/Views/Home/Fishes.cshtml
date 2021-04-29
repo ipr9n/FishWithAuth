@@ -4,28 +4,29 @@
     ViewBag.Title = "View";
 }
 
-@foreach (var item in Model)
-{
-    <div class="card" style="        margin-top: 20px;
-        box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;">
-        <img src="@item.Image" class="card-img-top" style=";
-        margin: 20px;
-        max-width: 200px;
-        max-height: 200px;
-        box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);">
-        <div class="card-body">
-            <h5 class="card-title">@item.Name</h5>
-            <p class="card-text">@item.Description</p>
-             <a href="#" class="btn btn-primary">Подробнее</a>
+<h1 class="main_h1">Виды рыб:</h1>
 
-            @if (ViewBag.IsAdmin)
-            {
-                using (Html.BeginForm("UpdateFish", "Home"))
-                {
-                    <input type="hidden" name="fishId" id="fishId" value="@item.Id" />
-                    <input type="submit" class="btn btn-primary" style="margin-top: 5px;" value="Редактировать ( для админа )" />
-                }
-            }
+@using (Html.BeginForm("Fishes", "Home"))
+{
+    <div class="container_search_list_input">
+        <h2>Введите вид рыбы:</h2>
+        <input name="text" class="search_list_input" />
+        <div class="searh_list_btn">
+            <button type="submit">Поиск</button>
         </div>
     </div>
 }
+
+<div class="list_of_cards">
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        <div class="card_of_list">
+            <a href="@Url.Action($"Fish/{item.Id}", "Home")" class="list_card_link">
+                <img class="img_of_card_list" src="@item.Image">
+                <h2 class="list_card_title">@item.Name</h2>
+            </a>
+        </div>
+        <hr class="hr_card" />
+    }
+
+</div>

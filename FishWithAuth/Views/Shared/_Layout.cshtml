@@ -12,37 +12,39 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Меню</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
-                @Html.ActionLink("Рыбы", "Fishes", "Home", new object { },
-new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Озера", "Lakes", "Home", new object { },
-new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Лодки", "Boats", "Home", new object { },
-new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Удочки", "Rods", "Home", new object { },
-new { @class = "nav-item nav-link" })
-                @Html.ActionLink("Типы удочек", "RodTypes", "Home", new object { },
-new { @class = "nav-item nav-link" })
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="my_navbar">
+            <a class="navbar-brand" href="#">Меню</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
+                    @Html.ActionLink("Рыбы", "Fishes", "Home", new object { },
+    new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Озера", "Lakes", "Home", new object { },
+    new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Лодки", "Boats", "Home", new object { },
+    new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Удочки", "Rods", "Home", new object { },
+    new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Типы удочек", "RodTypes", "Home", new object { },
+    new { @class = "nav-item nav-link" })
+
+                </div>
+
 
             </div>
-
-
+            @Html.Partial("_LoginPartial")
         </div>
-        @Html.Partial("_LoginPartial")
     </nav>
     <div class="container body-content">
 
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
+   
         </footer>
     </div>
 

@@ -39,8 +39,6 @@ namespace FishWithAuth
                 "~/Scripts/DataTables/dataTables.responsive.min.js",
                 "~/Scripts/DataTables/buttons.flash.min.js",
                 "~/Scripts/DataTables/buttons.html5.min.js"));
-
-
         }
     }
 }

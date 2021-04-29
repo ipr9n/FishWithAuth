@@ -1,5 +1,5 @@
-﻿body {
-    padding-top: 50px;
+﻿@import url('Site.css');
+body {
     padding-bottom: 20px;
 }
 
@@ -84,4 +84,206 @@ button {
 .table-class {
     box-shadow: 0px 4px 18px 3px rgb(34 60 80 / 43%);
     border: outset;
+}
+
+.my_container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.card_img_block{
+    width: 100%;
+    margin: 0 auto;
+    display:flex;
+    justify-content:center;
+    margin-bottom: 30px;
+}
+
+.card_img_block img {
+    width: 200px;
+    border-radius: 50%;
+}
+.name_block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.description_of_card {
+    width: 100%;
+    display: flex;
+    max-width: 1000px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.hr_card {
+    margin-bottom: 50px;
+    max-width: 400px;
+    width: 100%;
+}
+
+
+.btns_of_card{
+    width: 100%;
+    margin: 0 auto;
+    display:flex;
+    margin-top: 70px;
+    margin-bottom: 60px;
+  
+}
+.update_card_btn {
+    justify-content:center;
+    margin: 0 auto;
+}
+
+.update_card_btn a {
+    padding: 15px 50px;
+    border: none;
+    border-radius: 4px;
+    border: 2px solid #000;
+}
+
+.update_card_btn a:hover{
+    cursor:pointer;
+    background: #F7FF00;
+    
+}
+
+.references_block {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.ul_references{
+    width: 100%;
+}
+.reference {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    background: #F0F0EE;
+    border: 1px solid black;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin: 10px auto;
+}
+
+.name_of_reference{
+   margin: 0 auto;
+}
+
+
+/*Стили всего списка*/
+
+.list_of_cards{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.card_of_list {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    
+}
+
+.img_of_card_list {
+    width: 300px;
+    border-radius: 50%;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.list_card_title {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.list_card_link {
+    text-decoration: none;
+    margin: 15px 0px;
+    color: black;
+    background: #F0F0EE;
+    border-radius: 30px;
+    padding: 15px 30px;
+}
+
+.list_card_link:hover{
+    text-decoration:none;
+    color: black;
+}
+
+.main_h1{
+    text-align:center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.container_search_list_input{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search_list_input{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.container_search_list_input h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.searh_list_btn{
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+    display:flex;
+    margin-top: 10px;
+}
+
+.searh_list_btn  button{
+    padding: 15px 50px;
+    border: none;
+    border-radius: 10px;
+}
+
+.searh_list_btn button:hover {
+    padding: 15px 50px;
+    border: none;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 0px 2px rgba(34, 60, 80, 0.56) inset;
+    -moz-box-shadow: 0px 0px 0px 2px rgba(34, 60, 80, 0.56) inset;
+    box-shadow: 0px 0px 0px 2px rgba(34, 60, 80, 0.56) inset;
+}
+
+.my_navbar{
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.hello_user{
+    margin-right: 15px;
 }

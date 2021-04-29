@@ -51,6 +51,12 @@ namespace FishWithAuth.Controllers
             return View(createfish);
         }
 
+        [HttpGet]
+        public ActionResult Fish(int Id)
+        {
+            return View(db.Fishes.First(x => x.Id == Id));
+        }
+
         [HttpPost]
         public ActionResult CreateFish(Fish model, List<String> Lakes, List<String> Baits)
         {
@@ -63,23 +69,34 @@ namespace FishWithAuth.Controllers
             }
             else if (db.Fishes.FirstOrDefault(x => x.Name == model.Name) == null)
             {
-                if(Lakes != null)
-                Lakes.ForEach(x => model.Lakes.Add(db.Lakes.First(y => y.Name == x)));
-                if(Baits != null)
-                Baits.ForEach(x => model.Baits.Add(db.Baits.First(y => y.Name == x)));
+                if (Lakes != null)
+                    Lakes.ForEach(x => model.Lakes.Add(db.Lakes.First(y => y.Name == x)));
+                if (Baits != null)
+                    Baits.ForEach(x => model.Baits.Add(db.Baits.First(y => y.Name == x)));
                 db.Fishes.Add(model);
                 db.SaveChanges();
             }
             return View("Index");
         }
 
-        [HttpPost]
-        public ActionResult UpdateFish(int fishId)
+        public ActionResult UpdateFish(int Id)
         {
-            var fish = db.Fishes.First(x => x.Id == fishId);
-            var fishView = new CreateFishViewModel() { Id = fishId, Description = fish.Description, Name = fish.Name };
-            return View("CreateFish", fishView);
+            if (IsAdmin)
+            {
+                var fish = db.Fishes.First(x => x.Id == Id);
+                var fishView = new CreateFishViewModel() { Id = Id, Description = fish.Description, Name = fish.Name };
+                return View("CreateFish", fishView);
+            }
+            return RedirectToAction("Index");
         }
+
+        public ActionResult DeleteFish(int fishId)
+        {
+            db.Fishes.Remove(db.Fishes.First(x => x.Id == fishId));
+            db.SaveChanges();
+            return RedirectToAction("Fishes");
+        }
+
 
         [HttpPost]
         public ActionResult CreateLake(Lake model)
@@ -237,11 +254,13 @@ namespace FishWithAuth.Controllers
             ViewBag.IsAdmin = IsAdmin;
             return View(db.FishRods.ToList());
         }
-
-        public ActionResult Fishes()
+        public ActionResult Fishes(string text)
         {
             ViewBag.IsAdmin = IsAdmin;
-            return View(db.Fishes.ToList());
+            if (!String.IsNullOrEmpty(text))
+                return View(db.Fishes.Where(x => x.Name.Contains(text)).ToList());
+            else
+                return View(db.Fishes.ToList());
         }
 
         public ActionResult AdminPanel()
