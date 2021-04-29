@@ -7,6 +7,8 @@
     <title>@ViewBag.Title - приложение ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 <body>
@@ -46,6 +48,7 @@ new { @class = "nav-item nav-link" })
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/datatables")
+      @RenderSection("scripts", required: false)
 </body>
 </html>

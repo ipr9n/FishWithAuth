@@ -204,7 +204,10 @@ namespace FishWithAuth.Controllers
         public ActionResult AdminPanel()
         {
             if (IsAdmin)
-                return View();
+            {
+                var model = new FullInfoViewModel() { Lakes = db.Lakes.ToList(), Boats = db.Boats.ToList(), Fishes = db.Fishes.ToList() };
+                return View(model);
+            }
             else
                 return RedirectToAction("Index");
         }

@@ -71,3 +71,17 @@ p {
     display: none;
 }
 
+.form-with-shadow {
+    margin: 15px;
+    padding: 15px;
+    box-shadow: 0px 0px 19px 8px rgba(0,0,0,0.42);
+}
+
+button {
+    margin-top: 10px;
+}
+
+.table-class {
+    box-shadow: 0px 4px 18px 3px rgb(34 60 80 / 43%);
+    border: outset;
+}

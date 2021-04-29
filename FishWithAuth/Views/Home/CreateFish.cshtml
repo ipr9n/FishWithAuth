@@ -1,19 +1,10 @@
 ﻿@model FishWithAuth.Models.CreateFishViewModel
 
-@{
-    ViewBag.Title = "AddFish";
-}
-
-<h2>AddFish</h2>
-
-
 @using (Html.BeginForm("CreateFish", "Home"))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Fish</h4>
-    <hr />
+<div class="form-horizontal form-with-shadow">
     @Html.HiddenFor(model => model.Image)
     <img src="@Model.Image" id="img" name="img" style="border-radius: 50%; margin-bottom: 20px;max-width: 200px; max-height: 200px">
     <input type="hidden" name="Id" id="Id" value="@Model.Id" />
@@ -57,7 +48,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" id="createbtn" value="Create" class="btn btn-default" />
+            <input type="submit" id="createbtn" value="Создать" class="btn btn-danger" />
         </div>
     </div>
 </div>

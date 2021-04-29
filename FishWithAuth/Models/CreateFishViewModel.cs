@@ -24,6 +24,9 @@ namespace FishWithAuth.Models
         public CreateFishViewModel()
         {
             Image = "https://offers-api.agregatoreat.ru/api/file/8a9d80ed-1e36-4386-ba47-90307f47587d";
+
+            Lakes = new List<Lake>();
+            AllBaits = new List<Bait>();
         }
     }
 }

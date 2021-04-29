@@ -1,15 +1,47 @@
-﻿
+﻿@model FullInfoViewModel
+
+@using FishWithAuth.Models
+
 @{
     ViewBag.Title = "AdminPanel";
 }
 
-    @Html.ActionLink("Добавить озеро", "CreateLake", "Home", new object { },
-new { @class = "dropdown-item" })
-    @Html.ActionLink("Добавить рыбу", "CreateFish", "Home", new object { },
-new { @class = "dropdown-item" })
-    @Html.ActionLink("Добавить лодку", "CreateBoat", "Home", new object { },
-new { @class = "dropdown-item" })
-    @Html.ActionLink("Добавить удочку", "CreateRod", "Home", new object { },
-new { @class = "dropdown-item" })
-    @Html.ActionLink("Добавить класс удочек", "CreateRodType", "Home", new object { },
-new { @class = "dropdown-item" })
+<button type="button" id="createLakeBtn" class="btn btn-outline-primary col-md-12">Добавить озеро</button>
+<div id="createLake" style="display: none;">@Html.Partial("CreateLake", new CreateLakeViewModel())</div>
+<button type="button" id="createFishBtn" class="btn btn-outline-primary col-md-12">Добавить рыбу</button>
+<div id="createFish" style="display: none">@Html.Partial("CreateFish", new CreateFishViewModel())</div>
+<button type="button" id="createBoatBtn" class="btn btn-outline-primary col-md-12">Добавить лодку</button>
+<div id="createBoat" style="display: none">@Html.Partial("CreateBoat", new CreateBoatViewModel())</div>
+<button type="button" id="createRodBtn" class="btn btn-outline-primary col-md-12">Добавить удочку</button>
+@*<div id="createRod" style="display: none">@Html.Partial("CreateRod", new CreateRodViewModel())</div>*@
+
+<h4>Общая информация: </h4>
+<h5>Озера</h5>
+<div class="table-class">
+    @Html.Partial("LakeTable", Model.Lakes)
+</div>
+<h5>Лодки</h5>
+<div class="table-class">
+    @Html.Partial("BoatTable", Model.Boats)
+</div>
+<h5>Рыба</h5>
+<div class="table-class">
+    @Html.Partial("FishTable", Model.Fishes)
+</div>
+
+
+
+<script>
+    $('#createLakeBtn').click(function () {
+        $('#createLake').toggle()
+    })
+    $('#createFishBtn').click(function () {
+        $('#createFish').toggle()
+    })
+    $('#createBoatBtn').click(function () {
+        $('#createBoat').toggle()
+    })
+    $('#createRodBtn').click(function () {
+        $('#createRod').toggle()
+    })
+</script>

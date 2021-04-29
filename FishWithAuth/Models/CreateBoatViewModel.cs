@@ -20,5 +20,11 @@ namespace FishWithAuth.Models
 
         [DisplayName("Озера в которых можно плавать")]
         public List<Lake> Lakes { get; set; }
+
+        public CreateBoatViewModel()
+        {
+            Image = "https://offers-api.agregatoreat.ru/api/file/8a9d80ed-1e36-4386-ba47-90307f47587d";
+            Lakes = new List<Lake>();
+        }
     }
 }
