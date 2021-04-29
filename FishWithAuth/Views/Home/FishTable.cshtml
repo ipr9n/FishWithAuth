@@ -1,0 +1,44 @@
+﻿@model List<FishWithAuth.EF.Entities.Fish>
+
+<table class="table" id="fish-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <th scope="row">@item.Id</th>
+    <td>@Html.ActionLink(@item.Name, $"Fish/{item.Id}")</td>
+    <td>@item.Description</td>
+</tr>}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#fish-table').DataTable() {
+
+        }
+        // Setup - add a text input to each footer cell
+        $('#fish-table thead tr').clone(true).appendTo('#fish-table thead');
+        $('#fish-table thead tr:eq(1) th').each(function (i) {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Поиск по ' + title + '" />');
+
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+
+                }
+            });
+        });
+    })
+</script>

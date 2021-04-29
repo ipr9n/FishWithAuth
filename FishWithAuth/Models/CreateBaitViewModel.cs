@@ -16,5 +16,11 @@ namespace FishWithAuth.Models
 
 
         public List<Fish> Fishes { get; set; }
+
+        public CreateBaitViewModel()
+        {
+            Image = "https://offers-api.agregatoreat.ru/api/file/8a9d80ed-1e36-4386-ba47-90307f47587d";
+            Fishes = new List<Fish>();
+        }
     }
 }
