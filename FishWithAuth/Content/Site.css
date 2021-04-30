@@ -287,3 +287,34 @@ button {
 .hello_user{
     margin-right: 15px;
 }
+.navbar_fix {
+    margin-bottom: 20px;
+}
+
+.btn_login_my{
+    border: 2px solid black;
+}
+.btn_login_my:hover {
+    background: #F0F0EE;
+}
+
+.my_register_p a{
+    margin-left:14px;
+}
+
+.my_reg_btn {
+    border: 2px solid black;
+}
+.my_reg_btn:hover {
+    background: #F0F0EE;
+}
+
+.nav.navbar-nav.navbar-right li{
+    margin-right: 15px;
+}
+
+.select_my select{
+    width: 100%;
+    padding: 15px;
+
+}

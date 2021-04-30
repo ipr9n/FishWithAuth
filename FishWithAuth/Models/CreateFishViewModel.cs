@@ -16,9 +16,9 @@ namespace FishWithAuth.Models
         public string Image { get; set; }
         [DisplayName("Описание")]
         public string Description { get; set; }
-        [DisplayName("Озера в которых водится")]
+        [DisplayName("Озера в которых обитает данный вид:")]
         public List<Lake> Lakes { get; set; }
-        [DisplayName("Наживка на которую можно поймать")]
+        [DisplayName("Наживка на которую можно поймать:")]
         public List<Bait> AllBaits { get; set; }
 
         public CreateFishViewModel()

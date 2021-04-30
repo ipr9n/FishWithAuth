@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - приложение ASP.NET</title>
+    <title>справочник рыбалова</title>
+    <link rel="shortcut icon" type="image/png" href="https://icons.iconarchive.com/icons/icons8/ios7/24/Animals-Fish-icon.png" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -12,15 +13,13 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar_fix">
         <div class="my_navbar">
-            <a class="navbar-brand" href="#">Меню</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Главная <span class="sr-only">(current)</span></a>
                     @Html.ActionLink("Рыбы", "Fishes", "Home", new object { },
     new { @class = "nav-item nav-link" })
                     @Html.ActionLink("Озера", "Lakes", "Home", new object { },
@@ -29,8 +28,7 @@
     new { @class = "nav-item nav-link" })
                     @Html.ActionLink("Удочки", "Rods", "Home", new object { },
     new { @class = "nav-item nav-link" })
-                    @Html.ActionLink("Типы удочек", "RodTypes", "Home", new object { },
-    new { @class = "nav-item nav-link" })
+                  
 
                 </div>
 

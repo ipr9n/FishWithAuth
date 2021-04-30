@@ -27,7 +27,7 @@
     {
     <div class="form-group">
         @Html.LabelFor(model => model.Lakes, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-10 select_my">
             @Html.ListBoxFor(model => model.Lakes, new SelectList(Model.Lakes.Select(x => x.Name), "Lakes"))
         </div>
     </div>

@@ -49,13 +49,13 @@ namespace FishWithAuth.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "Ваша почта")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Ваш пароль")]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить меня")]
