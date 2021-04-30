@@ -13,12 +13,10 @@ namespace FishWithAuth.EF.Entities
         public string Image { get; set; }
 
         public virtual List<Fish> Fishes { get; set; }
-        public virtual List<FishRod> FishRods { get; set; }
 
         public Hooks()
         {
             Fishes = new List<Fish>();
-            FishRods = new List<FishRod>();
         }
     }
 }

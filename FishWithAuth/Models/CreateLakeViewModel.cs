@@ -13,5 +13,11 @@ namespace FishWithAuth.Models
         public string Name { get; set; }
         [DisplayName("Описание")]
         public string Description { get; set; }
+        public string Image { get; set; }
+
+        public CreateLakeViewModel()
+        {
+            Image = "https://offers-api.agregatoreat.ru/api/file/8a9d80ed-1e36-4386-ba47-90307f47587d";
+        }
     }
 }

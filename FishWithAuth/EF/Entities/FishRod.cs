@@ -13,11 +13,9 @@ namespace FishWithAuth.EF.Entities
         public string Image { get; set; }
 
         public virtual List<Fish> Fishes { get; set; }
-        public virtual List<Hooks> Hookses { get; set; }
 
         public FishRod()
         {
-            Hookses = new List<Hooks>();
             Fishes = new List<Fish>();
         }
     }
