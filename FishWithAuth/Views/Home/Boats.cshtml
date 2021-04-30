@@ -4,22 +4,29 @@
     ViewBag.Title = "View";
 }
 
-@foreach (var item in Model)
+<h1 class="main_h1">Лодки:</h1>
+
+@using (Html.BeginForm("Boats", "Home"))
 {
-    <div class="card" style="margin-top: 20px;">
-        <img src="https://offers-api.agregatoreat.ru/api/file/8a9d80ed-1e36-4386-ba47-90307f47587d" class="card-img-top" style="width : 250px; height: 200px;">
-        <div class="card-body">
-            <h5 class="card-title">@item.Name</h5>
-            <p class="card-text">@item.Description</p>
-            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-            @if (ViewBag.IsAdmin)
-            {
-                using (Html.BeginForm("UpdateBoat", "Home"))
-                {
-                    <input type="hidden" name="boatId" id="boatId" value="@item.Id" />
-                    <input type="submit" value="Редактировать ( для админа )" />
-                }
-            }
+    <div class="container_search_list_input">
+        <h2>Введите название лодки:</h2>
+        <input name="text" class="search_list_input" />
+        <div class="searh_list_btn">
+            <button type="submit">Поиск</button>
         </div>
     </div>
 }
+
+<div class="list_of_cards">
+    @foreach (var item in Model.OrderBy(x => x.Name))
+    {
+        <div class="card_of_list">
+            <a href="@Url.Action($"Boat/{item.Id}", "Home")" class="list_card_link">
+                <img class="img_of_card_list" src="@item.Image">
+                <h2 class="list_card_title">@item.Name</h2>
+            </a>
+        </div>
+        <hr class="hr_card" />
+    }
+
+</div>

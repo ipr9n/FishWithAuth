@@ -602,6 +602,8 @@
     <Content Include="Views\Home\BoatTable.cshtml" />
     <Content Include="Views\Home\FishTable.cshtml" />
     <Content Include="Views\Home\Fish.cshtml" />
+    <Content Include="Views\Home\Lake.cshtml" />
+    <Content Include="Views\Home\Boat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

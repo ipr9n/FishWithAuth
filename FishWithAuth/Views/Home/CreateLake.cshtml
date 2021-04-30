@@ -4,30 +4,109 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal form-with-shadow">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <input type="hidden" name="Id" id="Id" value="@Model.Id" />
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Создать" class="btn btn-danger" />
-            </div>
+<div class="form-horizontal form-with-shadow">
+    @Html.HiddenFor(model => model.Image)
+    <img src="@Model.Image" id="img" name="img" style="border-radius: 50%; margin-bottom: 20px;max-width: 200px; max-height: 200px">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div id="drop-area" class="form-group">
+        <form class="my-form">
+            <p>Перетяните изображение либо выберите при помощи кнопки</p>
+            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+            <label class="button" for="fileElem">Обзор</label>
+        </form>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="createbtn" name="createbtn" value="Создать" class="btn btn-danger" />
+        </div>
+    </div>
+</div>
 }
 
+
+<script>
+
+    let dropArea = document.getElementById('drop-area');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+    })
+
+    function preventDefaults(e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+    ;['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false)
+    })
+        ;['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false)
+        })
+    function highlight(e) {
+        dropArea.classList.add('highlight')
+    }
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight')
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false)
+    function handleDrop(e) {
+        let dt = e.dataTransfer
+        let files = dt.files
+        handleFiles(files)
+
+    }
+
+    function handleFiles(files) {
+        ([...files]).forEach(uploadFile)
+    }
+
+
+    const cloudName = 'ipr9n';
+    const unsignedUploadPreset = 'mp8fevzi';
+
+    function uploadFile(file) {
+        var url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        document.getElementById('createbtn').disabled = true;
+
+        xhr.onreadystatechange = function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+
+                var url = response.secure_url;
+                $("#Image").val(url);
+                $("#img").attr("src", url);
+                document.getElementById('createbtn').disabled = false;
+            }
+        };
+        fd.append('upload_preset', unsignedUploadPreset);
+        fd.append('tags', 'browser_upload'); // Optional - add tag for image admin in Cloudinary
+        fd.append('file', file);
+        xhr.send(fd);
+
+    }
+
+</script>

@@ -5,7 +5,7 @@
 }
 <div class="my_container">
     <div class="card_img_block">
-        @Html.HiddenFor(model=>model.Id)
+        @Html.HiddenFor(model => model.Id)
         <img src=@Model.Image />
     </div>
     <div class="name_block">
@@ -22,19 +22,33 @@
         <div class="reference">
             <h2 class="name_of_reference">Озёра:</h2>
             <ul class="ul_references">
-                @foreach (var lake in Model.Lakes)
+                @if (Model.Lakes.Any())
                 {
-                    <li>@Html.ActionLink(@lake.Name, $"Lake/{lake.Id}", "Home", new object { }, new { @class = "" })</li>
+                    foreach (var lake in Model.Lakes)
+                    {
+                        <li>@Html.ActionLink(@lake.Name, $"Lake/{lake.Id}", "Home", new object { }, new { @class = "" })</li>
+                    }
+                }
+                else
+                {
+                    <li>Озер обитания не обнаружено</li>
                 }
             </ul>
         </div>
         <div class="reference">
-            <h2 class="name_of_reference">Озёра:</h2>
+            <h2 class="name_of_reference">Удочки:</h2>
             <ul class="ul_references">
-                @foreach (var rod in Model.FishRods)
+                @if (Model.FishRods.Any())
                 {
-                    <li>@rod.Name</li>
+                    foreach (var rod in Model.FishRods)
+                    {
+                        <li>@rod.Name</li>
+                    }
                 }
+                else
+            {
+                <li>Удочек на которые можно поймать не обнаружено</li>
+            }
             </ul>
         </div>
     </div>

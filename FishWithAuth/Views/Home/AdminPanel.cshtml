@@ -7,17 +7,17 @@
 }
 
 <button type="button" id="createLakeBtn" class="btn btn-outline-primary col-md-12">Добавить озеро</button>
-<div id="createLake" style="display: none;">@Html.Partial("CreateLake", new CreateLakeViewModel())</div>
+<div id="createLake" style="display: none"></div>
 <button type="button" id="createFishBtn" class="btn btn-outline-primary col-md-12">Добавить рыбу</button>
-<div id="createFish" style="display: none">@Html.Partial("CreateFish", new CreateFishViewModel() {Lakes = Model.Lakes })</div>
+<div id="createFish" style="display: none"></div>
 <button type="button" id="createBoatBtn" class="btn btn-outline-primary col-md-12">Добавить лодку</button>
-<div id="createBoat" style="display: none">@Html.Partial("CreateBoat", new CreateBoatViewModel())</div>
+<div id="createBoat" style="display: none"></div>
 <button type="button" id="createRodBtn" class="btn btn-outline-primary col-md-12">Добавить удочку</button>
 @*<div id="createRod" style="display: none">@Html.Partial("CreateRod", new CreateRodViewModel())</div>*@
 
 <h4>Общая информация: </h4>
 <h5>Озера</h5>
-<div class="table-class">
+<div class="table-class"">
     @Html.Partial("LakeTable", Model.Lakes)
 </div>
 <h5>Лодки</h5>
@@ -32,13 +32,49 @@
 
 
 <script>
+    function clearCreateZone() {
+        $("#createLake").html("");
+        $("#createFish").html("");
+        $("#createBoat").html("");
+    }
     $('#createLakeBtn').click(function () {
-        $('#createLake').toggle(1000)
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateLake',
+                success: function (result) {
+                    $("#createLake").html(result);
+                },
+            });
+
+       $('#createLake').toggle(1000)
     })
     $('#createFishBtn').click(function () {
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateFish',
+                success: function (result) {
+                    $("#createFish").html(result);
+                },
+            });
         $('#createFish').toggle(1000)
     })
     $('#createBoatBtn').click(function () {
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateBoat',
+                success: function (result) {
+                    $("#createBoat").html(result);
+                },
+            });
         $('#createBoat').toggle(1000)
     })
     $('#createRodBtn').click(function () {
