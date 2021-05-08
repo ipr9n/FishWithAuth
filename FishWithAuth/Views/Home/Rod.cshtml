@@ -1,7 +1,7 @@
-﻿@model FishWithAuth.EF.Entities.Boat
+﻿@model FishWithAuth.EF.Entities.FishRod
 
 @{
-    ViewBag.Title = "Boat";
+    ViewBag.Title = "Rod";
 }
 
 <div class="my_container">
@@ -21,18 +21,18 @@
 
     <div class="references_block">
         <div class="reference">
-            <h2 class="name_of_reference">Озёра:</h2>
+            <h2 class="name_of_reference">Рыба:</h2>
             <ul class="ul_references">
-                @if (Model.Lakes.Any())
+                @if (Model.Fishes.Any())
                 {
-                    foreach (var lake in Model.Lakes)
+                    foreach (var fish in Model.Fishes)
                     {
-                        <li>@Html.ActionLink(@lake.Name, $"Lake/{lake.Id}", "Home", new object { }, new { @class = "" })</li>
+                        <li>@Html.ActionLink(fish.Name, $"Fish/{fish.Id}", "Home", new object { }, new { @class = "" })</li>
                     }
                 }
                 else
                 {
-                    <li>Разрешенных озер нет</li>
+                    <li>Информации  о рыбах нет</li>
                 }
             </ul>
         </div>
@@ -42,11 +42,10 @@
     {
         <div class="btns_of_card">
             <div class="update_card_btn">
-                @Html.ActionLink("Изменить", $"UpdateBoat/{Model.Id}", "Home", new object { }, new { @class = "" })
+                @Html.ActionLink("Изменить", $"UpdateRod/{Model.Id}", "Home", new object { }, new { @class = "" })
             </div>
         </div>
     }
-
 
 </div>
 

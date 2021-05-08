@@ -4,35 +4,64 @@
     ViewBag.Title = "Lake";
 }
 
-<h2>Lake</h2>
+<div class="my_container">
+    <div class="card_img_block">
+        @Html.HiddenFor(model => model.Id)
+        <img src=@Model.Image />
+    </div>
+    <div class="name_block">
+        <h2>@Model.Name</h2>
+    </div>
+    <hr class="hr_card" />
+    <div class="description_of_card">
+        <p>@Model.Description</p>
+    </div>
 
-<div>
-    <h4>Lake</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <hr class="hr_card" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="references_block">
+        <div class="reference">
+            <h2 class="name_of_reference">Лодки:</h2>
+            <ul class="ul_references">
+                @if (Model.Boats.Any())
+                {
+                    foreach (var boat in Model.Boats)
+                    {
+                        <li>@Html.ActionLink(boat.Name, $"Boat/{boat.Id}", "Home", new object { }, new { @class = "" })</li>
+                    }
+                }
+                else
+                {
+                    <li>Лодок для плавания нет</li>
+                }
+            </ul>
+        </div>
+        <div class="reference">
+            <h2 class="name_of_reference">Рыбы:</h2>
+            <ul class="ul_references">
+                @if (Model.Fishes.Any())
+                {
+                    foreach (var fish in Model.Fishes)
+                    {
+                        <li>@Html.ActionLink(fish.Name, $"Fish/{fish.Id}", "Home", new object { }, new { @class = "" })</li>
+                    }
+                }
+                else
+                {
+                    <li>Рыб в данном водоёме нет</li>
+                }
+            </ul>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    @if (Request.IsAuthenticated)
+    {
+        <div class="btns_of_card">
+            <div class="update_card_btn">
+                @Html.ActionLink("Изменить", $"UpdateLake/{Model.Id}", "Home", new object { }, new { @class = "" })
+            </div>
+        </div>
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-    </dl>
 </div>
+

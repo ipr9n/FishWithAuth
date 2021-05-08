@@ -7,17 +7,21 @@
 }
 
 <button type="button" id="createLakeBtn" class="btn btn-outline-primary col-md-12">Добавить озеро</button>
-<div id="createLake" style="display: none"></div>
+<div id="createLake"></div>
 <button type="button" id="createFishBtn" class="btn btn-outline-primary col-md-12">Добавить рыбу</button>
-<div id="createFish" style="display: none"></div>
+<div id="createFish"></div>
 <button type="button" id="createBoatBtn" class="btn btn-outline-primary col-md-12">Добавить лодку</button>
-<div id="createBoat" style="display: none"></div>
+<div id="createBoat"></div>
 <button type="button" id="createRodBtn" class="btn btn-outline-primary col-md-12">Добавить удочку</button>
-@*<div id="createRod" style="display: none">@Html.Partial("CreateRod", new CreateRodViewModel())</div>*@
+<div id="createRod"></div>
+<button type="button" id="createBaitBtn" class="btn btn-outline-primary col-md-12">Добавить наживку</button>
+<div id="createBait"></div>
+<button type="button" id="createHookBtn" class="btn btn-outline-primary col-md-12">Добавить крючок</button>
+<div id="createHook"></div>
 
 <h4>Общая информация: </h4>
 <h5>Озера</h5>
-<div class="table-class"">
+<div class="table-class" ">
     @Html.Partial("LakeTable", Model.Lakes)
 </div>
 <h5>Лодки</h5>
@@ -36,6 +40,9 @@
         $("#createLake").html("");
         $("#createFish").html("");
         $("#createBoat").html("");
+        $("#createRod").html("");
+        $("#createBait").html("");
+        $("#createHook").html("");
     }
     $('#createLakeBtn').click(function () {
         clearCreateZone()
@@ -49,7 +56,35 @@
                 },
             });
 
-       $('#createLake').toggle(1000)
+        //$('#createLake').toggle(1000)
+    })
+    $('#createBaitBtn').click(function () {
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateBait',
+                success: function (result) {
+                    $("#createBait").html(result);
+                },
+            });
+        $("#createBait").chosen();
+        //$('#createFish').toggle(1000)
+    })
+    $('#createHookBtn').click(function () {
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateHook',
+                success: function (result) {
+                    $("#createHook").html(result);
+                },
+            });
+        $("#createHook").chosen();
+        //$('#createFish').toggle(1000)
     })
     $('#createFishBtn').click(function () {
         clearCreateZone()
@@ -62,7 +97,8 @@
                     $("#createFish").html(result);
                 },
             });
-        $('#createFish').toggle(1000)
+        $("#createFish").chosen();
+        //$('#createFish').toggle(1000)
     })
     $('#createBoatBtn').click(function () {
         clearCreateZone()
@@ -75,9 +111,22 @@
                     $("#createBoat").html(result);
                 },
             });
-        $('#createBoat').toggle(1000)
+        $("#createBoat").chosen();
+        //$('#createBoat').toggle(1000)
     })
     $('#createRodBtn').click(function () {
-        $('#createRod').toggle(1000)
+        clearCreateZone()
+        $.ajax(
+            {
+                type: 'GET',
+                dataType: 'html',
+                url: 'CreateRod',
+                success: function (result) {
+                    $("#createRod").html(result);
+                },
+            });
+        $("#createRod").chosen();
+
+        //$('#createRod').toggle(1000)
     })
 </script>

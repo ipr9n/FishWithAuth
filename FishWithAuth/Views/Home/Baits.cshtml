@@ -1,15 +1,15 @@
-﻿@model IEnumerable<FishWithAuth.EF.Entities.FishRod>
+﻿@model IEnumerable<FishWithAuth.EF.Entities.Bait>
 
 @{
     ViewBag.Title = "View";
 }
 
-<h1 class="main_h1">Удочки:</h1>
+<h1 class="main_h1">Виды наживки:</h1>
 
-@using (Html.BeginForm("Rods", "Home"))
+@using (Html.BeginForm("Baits", "Home"))
 {
     <div class="container_search_list_input">
-        <h2>Введите название удочки:</h2>
+        <h2>Введите название наживки:</h2>
         <input name="text" class="search_list_input" />
         <div class="searh_list_btn">
             <button type="submit">Поиск</button>
@@ -21,7 +21,7 @@
     @foreach (var item in Model.OrderBy(x => x.Name))
     {
         <div class="card_of_list">
-            <a href="@Url.Action($"Rod/{item.Id}", "Home")" class="list_card_link">
+            <a href="@Url.Action($"Bait/{item.Id}", "Home")" class="list_card_link">
                 <img class="img_of_card_list" src="@item.Image">
                 <h2 class="list_card_title">@item.Name</h2>
             </a>

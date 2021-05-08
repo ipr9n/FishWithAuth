@@ -36,6 +36,7 @@ namespace FishWithAuth.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateFish()
         {
             var createfish = new CreateFishViewModel() { Lakes = db.Lakes.ToList(), AllBaits = db.Baits.ToList() };
@@ -61,8 +62,27 @@ namespace FishWithAuth.Controllers
             return View(db.Boats.First(x => x.Id == Id));
         }
 
+        [HttpGet]
+        public ActionResult Bait(int Id)
+        {
+            return View(db.Baits.First(x => x.Id == Id));
+        }
+
+        [HttpGet]
+        public ActionResult Rod(int Id)
+        {
+            return View(db.FishRods.First(x => x.Id == Id));
+        }
+
+        [HttpGet]
+        public ActionResult Hook(int Id)
+        {
+            return View(db.Hookses.First(x => x.Id == Id));
+        }
+
         [HttpPost]
-        public ActionResult CreateFish(Fish model, List<String> Lakes, List<String> Baits)
+        [Authorize]
+        public ActionResult CreateFish(Fish model, List<String> Lakes, List<String> Baits, List<string> Rods, List<string> Hookses)
         {
             if (model.Id != 0 && IsAdmin)
             {
@@ -70,31 +90,55 @@ namespace FishWithAuth.Controllers
                 fish.Name = model.Name;
                 fish.Description = model.Description;
                 fish.Image = model.Image;
+
+                if (Rods != null)
+                {
+                    fish.FishRods.RemoveAll(x => x.Id != -1);
+                    Rods?.ForEach(x => fish.FishRods.Add(db.FishRods.First(y => y.Name == x)));
+                }
+                if (Lakes != null)
+                {
+                    fish.Lakes.RemoveAll(x => x.Id != -1);
+                    Lakes?.ForEach(x => fish.Lakes.Add(db.Lakes.First(y => y.Name == x)));
+                }
+                if (Baits != null)
+                {
+                    fish.Baits.RemoveAll(x => x.Id != -1);
+                    Baits?.ForEach(x => fish.Baits.Add(db.Baits.First(y => y.Name == x)));
+                }
+                if (Hookses != null)
+                {
+                    fish.Hookses.RemoveAll(x => x.Id != -1);
+                    Hookses?.ForEach(x => fish.Hookses.Add(db.Hookses.First(y => y.Name == x)));
+                }
+
                 db.SaveChanges();
             }
             else if (db.Fishes.FirstOrDefault(x => x.Name == model.Name) == null)
             {
-                if (Lakes != null)
-                    Lakes.ForEach(x => model.Lakes.Add(db.Lakes.First(y => y.Name == x)));
-                if (Baits != null)
-                    Baits.ForEach(x => model.Baits.Add(db.Baits.First(y => y.Name == x)));
+                    Lakes?.ForEach(x => model.Lakes.Add(db.Lakes.First(y => y.Name == x)));
+                    Baits?.ForEach(x => model.Baits.Add(db.Baits.First(y => y.Name == x)));
+                    Rods?.ForEach(x => model.FishRods.Add(db.FishRods.First(y => y.Name == x)));
+                    Hookses?.ForEach(x => model.Hookses.Add(db.Hookses.First(y => y.Name == x)));
                 db.Fishes.Add(model);
                 db.SaveChanges();
             }
             return View("Index");
         }
 
+        [Authorize]
         public ActionResult UpdateFish(int Id)
         {
             if (IsAdmin)
             {
                 var fish = db.Fishes.First(x => x.Id == Id);
-                var fishView = new CreateFishViewModel() { Id = Id, Description = fish.Description, Name = fish.Name };
+                var fishView = new CreateFishViewModel() { Id = Id, Description = fish.Description, Rods = db.FishRods.ToList(), Hookses = db.Hookses.ToList(), AllBaits = db.Baits.ToList(), Lakes = db.Lakes.ToList(), Name = fish.Name, Image = fish.Image };
                 return View("CreateFish", fishView);
             }
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult DeleteFish(int fishId)
         {
             db.Fishes.Remove(db.Fishes.First(x => x.Id == fishId));
@@ -104,6 +148,7 @@ namespace FishWithAuth.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateLake(Lake model)
         {
             if (model.Id != 0 && IsAdmin)
@@ -122,15 +167,16 @@ namespace FishWithAuth.Controllers
             return View("Index");
         }
 
-        [HttpPost]
-        public ActionResult UpdateLake(int lakeId)
+        [Authorize]
+        public ActionResult UpdateLake(int Id)
         {
-            var lake = db.Lakes.First(x => x.Id == lakeId);
-            var lakeView = new CreateLakeViewModel() { Id = lakeId, Description = lake.Description, Name = lake.Name, Image = lake.Image };
+            var lake = db.Lakes.First(x => x.Id == Id);
+            var lakeView = new CreateLakeViewModel() { Id = Id, Description = lake.Description, Name = lake.Name, Image = lake.Image };
             return View("CreateLake", lakeView);
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateLake()
         {
             var createLake = new CreateLakeViewModel();
@@ -139,10 +185,20 @@ namespace FishWithAuth.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateRod(FishRod model)
+        [Authorize]
+        public ActionResult CreateRod(FishRod model, List<string> Fishes)
         {
-            if (db.FishRods.FirstOrDefault(x => x.Name == model.Name) != null)
+            if (model.Id != 0 && IsAdmin)
             {
+                var rod = db.FishRods.First(x => x.Id == model.Id);
+                rod.Name = model.Name;
+                rod.Description = model.Description;
+                rod.Image = model.Image;
+                db.SaveChanges();
+            }
+            else if (db.FishRods.FirstOrDefault(x => x.Name == model.Name) == null)
+            {
+                Fishes?.ForEach(x => model.Fishes.Add(db.Fishes.First(y => y.Name == x)));
                 db.FishRods.Add(model);
                 db.SaveChanges();
             }
@@ -150,22 +206,24 @@ namespace FishWithAuth.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateRod()
         {
-            var createRod = new CreateRodViewModel();
+            var createRod = new CreateRodViewModel() { Fishes = db.Fishes.ToList() };
 
-            return View(createRod);
+            return PartialView(createRod);
         }
 
-        [HttpPost]
-        public ActionResult UpdateRod(int rodId)
+        [Authorize]
+        public ActionResult UpdateRod(int Id)
         {
-            var rod = db.FishRods.First(x => x.Id == rodId);
-            var rodView = new CreateRodViewModel() { Id = rodId, Description = rod.Description, Name = rod.Name };
+            var rod = db.FishRods.First(x => x.Id == Id);
+            var rodView = new CreateRodViewModel() { Id = Id, Description = rod.Description, Name = rod.Name, Image = rod.Image };
             return View("CreateRod", rodView);
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateBoat(Boat model, List<string> Lakes)
         {
             if (model.Id != 0 && IsAdmin)
@@ -186,6 +244,7 @@ namespace FishWithAuth.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult CreateBoat()
         {
             var createBoat = new CreateBoatViewModel() { Lakes = db.Lakes.ToList() };
@@ -193,56 +252,90 @@ namespace FishWithAuth.Controllers
             return PartialView(createBoat);
         }
 
-        [HttpPost]
-        public ActionResult UpdateBoat(int boatId)
+        [Authorize]
+        public ActionResult UpdateBoat(int Id)
         {
-            var boat = db.Boats.First(x => x.Id == boatId);
-            var boatView = new CreateBoatViewModel() { Id = boatId, Description = boat.Description, Name = boat.Name, Image = boat.Image };
+            var boat = db.Boats.First(x => x.Id == Id);
+            var boatView = new CreateBoatViewModel() { Id = Id, Description = boat.Description, Name = boat.Name, Image = boat.Image };
             return View("CreateBoat", boatView);
         }
 
-        /*
-         * Добавить страницу HTML:
-         * Views -> Home -> RMB ( Add View ))
-         * Чтобы зайти на эту страницу:
-         * Заходим в Controllers ->  HomeController
-         * Создаем метод который называется так же как   View!!! Обязательно
-         * Код метода:
-         * 
-                  public ActionResult Name()
-             {
-                return View();
-             }
-         *
-         *
-         * Где Name - название View
-         * 
-         *  Путь к странице будет "https://localhost:44314/Home/Name"
-         *  
-         *  Где Name -  название View и метода
-         *  
-         *  Страница с  навбаром, футером и хедером = Views/Shared/_Layout
-         *  
-         *  На этой странице можешь увидеть строчки:
-            @Scripts.Render("~/bundles/modernizr")
-            @Styles.Render("~/Content/css")
-        *
-        *  Этими строчками подключаются  скрипты и стили для страниц
-        *  Эти стили находятся в файле  App_Start/BundleConfig.cs
-        *  Для  примера стиль из этого файла, который используется
-        *   
-          bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
-        *
-        *
-        *   Первая строчка - псевдоним ( ~/Content/css ), который мы используем при подключении скрипта ( который используется в Views/Shared/_Layout )
-        *   На  второй и третей строчке  -   путь к файлам стилей ( можешь добавить свои по примеру )
-        *   
-        *   
-        *   После запуска проекта (  на F5 ). Если изменяешь файлы с Html ( в папке Views ) не обязательно заново собирать проект, можно просто сохранить файл (  CTRL+S )
-        *   и перезагрузить страницу в браузере. Со стилями не проверял, возможно так же работает
-         */
+        ///
+        [HttpPost]
+        [Authorize]
+        public ActionResult CreateHook(Hooks model, List<string> Fishes)
+        {
+            if (model.Id != 0 && IsAdmin)
+            {
+                var hook = db.Hookses.First(x => x.Id == model.Id);
+                hook.Name = model.Name;
+                hook.Description = model.Description;
+                hook.Image = model.Image;
+                db.SaveChanges();
+            }
+            else if (db.Boats.FirstOrDefault(x => x.Name == model.Name) == null)
+            {
+                Fishes?.ForEach(x => model.Fishes.Add(db.Fishes.First(y => y.Name == x)));
+                db.Hookses.Add(model);
+                db.SaveChanges();
+            }
+            return View("Index");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult CreateHook()
+        {
+            var createHook = new CreateHookViewModel() { Fishes = db.Fishes.ToList() };
+
+            return PartialView(createHook);
+        }
+
+        [Authorize]
+        public ActionResult UpdateHook(int Id)
+        {
+            var hook = db.Hookses.First(x => x.Id == Id);
+            var hookView = new CreateHookViewModel() { Id = Id, Description = hook.Description, Name = hook.Name, Image = hook.Image };
+            return View("CreateHook", hookView);
+        }
+        //
+        [HttpPost]
+        [Authorize]
+        public ActionResult CreateBait(Bait model, List<string> Fishes)
+        {
+            if (model.Id != 0 && IsAdmin)
+            {
+                var bait = db.Baits.First(x => x.Id == model.Id);
+                bait.Name = model.Name;
+                bait.Description = model.Description;
+                bait.Image = model.Image;
+                db.SaveChanges();
+            }
+            else if (db.Baits.FirstOrDefault(x => x.Name == model.Name) == null)
+            {
+                Fishes?.ForEach(x => model.Fishes.Add(db.Fishes.First(y => y.Name == x)));
+                db.Baits.Add(model);
+                db.SaveChanges();
+            }
+            return View("Index");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult CreateBait()
+        {
+            var createBait = new CreateBaitViewModel() { Fishes = db.Fishes.ToList() };
+
+            return PartialView(createBait);
+        }
+
+        [Authorize]
+        public ActionResult UpdateBait(int Id)
+        {
+            var hook = db.Baits.First(x => x.Id == Id);
+            var baitView = new CreateBaitViewModel() { Id = Id, Description = hook.Description, Name = hook.Name, Image = hook.Image };
+            return View("CreateBait", baitView);
+        }
 
         public ActionResult Lakes(string text)
         {
@@ -265,11 +358,36 @@ namespace FishWithAuth.Controllers
                 return View(db.Boats.ToList());
         }
 
-        public ActionResult Rods()
+        public ActionResult Rods(string text)
         {
             ViewBag.IsAdmin = IsAdmin;
-            return View(db.FishRods.ToList());
+
+            if (!String.IsNullOrEmpty(text))
+                return View(db.FishRods.Where(x => x.Name.Contains(text)).ToList());
+            else
+                return View(db.FishRods.ToList());
         }
+
+        public ActionResult Hookses(string text)
+        {
+            ViewBag.IsAdmin = IsAdmin;
+
+            if (!String.IsNullOrEmpty(text))
+                return View(db.Hookses.Where(x => x.Name.Contains(text)).ToList());
+            else
+                return View(db.Hookses.ToList());
+        }
+
+        public ActionResult Baits(string text)
+        {
+            ViewBag.IsAdmin = IsAdmin;
+
+            if (!String.IsNullOrEmpty(text))
+                return View(db.Baits.Where(x => x.Name.Contains(text)).ToList());
+            else
+                return View(db.Baits.ToList());
+        }
+
         public ActionResult Fishes(string text)
         {
             ViewBag.IsAdmin = IsAdmin;
@@ -279,6 +397,7 @@ namespace FishWithAuth.Controllers
             else
                 return View(db.Fishes.ToList());
         }
+
 
         public ActionResult AdminPanel()
         {

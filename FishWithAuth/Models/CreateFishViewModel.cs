@@ -20,6 +20,10 @@ namespace FishWithAuth.Models
         public List<Lake> Lakes { get; set; }
         [DisplayName("Наживка на которую можно поймать:")]
         public List<Bait> AllBaits { get; set; }
+        [DisplayName("Удочка на которую можно поймать:")]
+        public List<FishRod> Rods { get; set; }
+        [DisplayName("Крючок на который можно поймать:")]
+        public List<Hooks> Hookses { get; set; }
 
         public CreateFishViewModel()
         {
@@ -27,6 +31,8 @@ namespace FishWithAuth.Models
 
             Lakes = new List<Lake>();
             AllBaits = new List<Bait>();
+            Rods = new List<FishRod>();
+            Hookses = new List<Hooks>();
         }
     }
 }

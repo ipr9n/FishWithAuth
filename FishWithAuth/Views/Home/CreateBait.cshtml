@@ -1,21 +1,22 @@
-﻿@model FishWithAuth.Models.CreateFishViewModel
+﻿@model FishWithAuth.Models.CreateBaitViewModel
 
-@using (Html.BeginForm("CreateFish", "Home"))
+@using (Html.BeginForm("CreateBait", "Home"))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal form-with-shadow">
     @Html.HiddenFor(model => model.Image)
     <img src="@Model.Image" id="img" name="img" style="border-radius: 50%; margin-bottom: 20px;max-width: 200px; max-height: 200px">
-    <input type="hidden" name="Id" id="Id" value="@Model.Id" />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -23,65 +24,6 @@
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
-    @if (Model.Lakes.Any())
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.Lakes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 my_select_fix">
-                @Html.ListBoxFor(model => model.Lakes, new SelectList(Model.Lakes.Select(x => x.Name), "Lakes"), htmlAttributes: new { @class = "my_select_fixer" })
-            </div>
-        </div>
-    }
-    else
-    {
-        @:Добавьте хоть одно озеро на сайт, для возможности выбора озер обитания
-    }
-    <br />
-
-    @if (Model.AllBaits.Any())
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.AllBaits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 my_select_fix">
-                @Html.ListBoxFor(model => model.AllBaits, new SelectList(Model.AllBaits.Select(x => x.Name), "Baits"), htmlAttributes: new { @class = "my_select_fixer" })
-            </div>
-        </div>
-    }
-    else
-    {
-        @:Добавьте хоть одну наживку на сайт, для возможности выбора
-    }
-    <br />
-
-    @if (Model.Hookses.Any())
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hookses, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 my_select_fix">
-                @Html.ListBoxFor(model => model.Hookses, new SelectList(Model.Hookses.Select(x => x.Name), "Hookses"), htmlAttributes: new { @class = "my_select_fixer" })
-            </div>
-        </div>
-    }
-    else
-    {
-        @:Добавьте хоть один крючок, для возможности выбора
-    }
-    <br />
-
-    @if (Model.Rods.Any())
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.Rods, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10 my_select_fix">
-                @Html.ListBoxFor(model => model.Rods, new SelectList(Model.Rods.Select(x => x.Name), "Rods"), htmlAttributes: new { @class = "my_select_fixer" })
-            </div>
-        </div>
-    }
-    else
-    {
-        @:Добавьте хоть одну удочку, для возможности выбора
-    }
-    <br />
 
     <div id="drop-area" class="form-group">
         <form class="my-form">
@@ -91,14 +33,14 @@
         </form>
     </div>
 
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" id="createbtn" value="Создать" class="btn btn-danger" />
+            <input type="submit" id="createbtn" name="createbtn" value="Создать" class="btn btn-danger" />
         </div>
     </div>
 </div>
 }
+
 
 <script>
 

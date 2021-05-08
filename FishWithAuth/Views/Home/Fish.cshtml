@@ -42,23 +42,57 @@
                 {
                     foreach (var rod in Model.FishRods)
                     {
-                        <li>@rod.Name</li>
+                        <li>@Html.ActionLink(rod.Name, $"Rod/{rod.Id}", "Home", new object { }, new { @class = "" })</li>
                     }
                 }
                 else
-            {
-                <li>Удочек на которые можно поймать не обнаружено</li>
-            }
+                {
+                    <li>Удочек на которые можно поймать не обнаружено</li>
+                }
+            </ul>
+        </div>
+        <div class="reference">
+            <h2 class="name_of_reference">Крючки:</h2>
+            <ul class="ul_references">
+                @if (Model.Hookses.Any())
+                {
+                    foreach (var hook in Model.Hookses)
+                    {
+                        <li>@Html.ActionLink(hook.Name, $"Hook/{hook.Id}", "Home", new object { }, new { @class = "" })</li>
+                    }
+                }
+                else
+                {
+                    <li>Информации о крючках нет</li>
+                }
+            </ul>
+        </div>
+        <div class="reference">
+            <h2 class="name_of_reference">Наживки:</h2>
+            <ul class="ul_references">
+                @if (Model.Baits.Any())
+                {
+                    foreach (var bait in Model.Baits)
+                    {
+                        <li>@Html.ActionLink(bait.Name, $"Bait/{bait.Id}", "Home", new object { }, new { @class = "" })</li>
+                    }
+                }
+                else
+                {
+                    <li>Информации о наживках нет</li>
+                }
             </ul>
         </div>
     </div>
 
-    <div class="btns_of_card">
-        <div class="update_card_btn">
-            @Html.ActionLink("Изменить", $"UpdateFish/{Model.Id}", "Home", new object { }, new { @class = "" })
+    @if (Request.IsAuthenticated)
+    {
+        <div class="btns_of_card">
+            <div class="update_card_btn">
+                @Html.ActionLink("Изменить", $"UpdateFish/{Model.Id}", "Home", new object { }, new { @class = "" })
+            </div>
         </div>
-    </div>
-
+    }
 
 </div>
 

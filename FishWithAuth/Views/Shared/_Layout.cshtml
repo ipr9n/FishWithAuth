@@ -20,6 +20,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                    @Html.ActionLink("Главная", "Index", "Home", new object { },
+    new { @class = "nav-item nav-link" })
                     @Html.ActionLink("Рыбы", "Fishes", "Home", new object { },
     new { @class = "nav-item nav-link" })
                     @Html.ActionLink("Озера", "Lakes", "Home", new object { },
@@ -28,8 +30,10 @@
     new { @class = "nav-item nav-link" })
                     @Html.ActionLink("Удочки", "Rods", "Home", new object { },
     new { @class = "nav-item nav-link" })
-                  
-
+                    @Html.ActionLink("Крючки", "Hookses", "Home", new object { },
+   new { @class = "nav-item nav-link" })
+                    @Html.ActionLink("Наживки", "Baits", "Home", new object { },
+   new { @class = "nav-item nav-link" })
                 </div>
 
 
@@ -40,7 +44,6 @@
     <div class="container body-content">
 
         @RenderBody()
-        <hr />
         <footer>
    
         </footer>
