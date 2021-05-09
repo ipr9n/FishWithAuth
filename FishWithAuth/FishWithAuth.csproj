@@ -468,6 +468,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="CHM_SPRAVKA_RIBA.chm" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -616,6 +617,9 @@
     <Content Include="Views\Home\Hook.cshtml" />
     <Content Include="Views\Home\Bait.cshtml" />
     <Content Include="Views\Home\Rod.cshtml" />
+    <Content Include="Views\Home\BaitsTable.cshtml" />
+    <Content Include="Views\Home\HooksTable.cshtml" />
+    <Content Include="Views\Home\RodTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

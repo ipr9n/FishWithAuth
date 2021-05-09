@@ -25,6 +25,21 @@
         </div>
     </div>
 
+    @if (Model.Fishes.Any())
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fishes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 my_select_fix">
+                @Html.ListBoxFor(model => model.Fishes, new SelectList(Model.Fishes.Select(x => x.Name), "Fishes"), htmlAttributes: new { @class = "my_select_fixer" })
+            </div>
+        </div>
+    }
+    else
+    {
+        @:Добавьте хоть одну рыбу, для возможности выбора
+    }
+    <br />
+
     <div id="drop-area" class="form-group">
         <form class="my-form">
             <p>Перетяните изображение либо выберите при помощи кнопки</p>

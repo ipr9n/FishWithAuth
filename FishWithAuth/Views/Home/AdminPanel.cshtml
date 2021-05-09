@@ -20,6 +20,10 @@
 <div id="createHook"></div>
 
 <h4>Общая информация: </h4>
+<h5>Рыбы</h5>
+<div class="table-class">
+    @Html.Partial("FishTable", Model.Fishes)
+</div>
 <h5>Озера</h5>
 <div class="table-class" ">
     @Html.Partial("LakeTable", Model.Lakes)
@@ -28,10 +32,19 @@
 <div class="table-class">
     @Html.Partial("BoatTable", Model.Boats)
 </div>
-<h5>Рыба</h5>
+<h5>Наживки</h5>
 <div class="table-class">
-    @Html.Partial("FishTable", Model.Fishes)
+    @Html.Partial("BaitsTable", Model.Baits)
 </div>
+<h5>Удочки</h5>
+<div class="table-class">
+    @Html.Partial("RodTable", Model.Rods)
+</div>
+<h5>Крючки</h5>
+<div class="table-class">
+    @Html.Partial("HooksTable", Model.Hooks)
+</div>
+
 
 
 

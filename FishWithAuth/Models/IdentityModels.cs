@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -41,7 +42,6 @@ namespace FishWithAuth.Models
             Fish f14 = new Fish { Name = "Толстолобик", Description = "Воспроизводство толстолобиков в условиях Беларуси возможно лишь заводским методом путем искусственной инкубации икры и последующего подращивания молоди на специальных рыбозаводах с искусственным подогревом воды. Икру и молоки от них получают с помощью гипофизарных инъекций, инкубируют в специальных аппаратах.", Image = "https://eklev.ru/_thumbs/galleries-popup/src-25043.jpg" };
             Fish f15 = new Fish { Name = "Щука", Description = "Щуки — чрезвычайно прожорливые хищники. Питаются они в основном рыбой (плотвой, окунями, гольянами). Для щуки характерен каннибализм: около 20 % ее рациона составляют более мелкие особи ее собственного вида. Помимо этого, щуки питаются земноводными и рептилиями, крупными насекомыми и различными отбросами. Их добычей могут стать и мелкие млекопитающие, например, мыши или кроты, попавшие в воду. Щука охотится и на мелких водоплавающих птиц и их птенцов. Этот хищник нападает на животных, достигающих 1/3 от его собственных размеров. Щука достигает огромной величины и глубокой старости. Пудовую щуку можно найти всюду. У нас самые крупные щуки водятся в северных реках и озерах, вероятно, по причине их меньшей доступности сравнительно с южнорусскими. В Каме и в глубоких бочагах многих уральских небольших рек изредка попадается трехпудовая (50 кг); также в некоторых илистых озерах Приуральского края; в оз. Увельдах, напр., была поймана лет 25 назад щука в 3 ? (57 кг) пуда. Четырехпудовые щуки (65 кг), по свидетельству проф. Кесслера, встречаются в Онежском озере, тогда как в Ладожском эти хищники редко бывают более пуда весом. Самые огромные щуки водятся, по-видимому, в Вычегде и других северных реках. По свидетельству Арсеньева, монахом Ульяновского монастыря поймана здесь на дорожку, т.е. на ходовую блесну, щука в 5 (82 кг) пудов. Тот же писатель рассказывает следующий интересный случай. В Нювчимском заводе (в 30 верстах от Устьсысольска) в пруде речки Нювчима рабочие в июле 1885 года услыхали у шлюзов необыкновенную возню; масса рабочих увидала голову громадной щуки, которая схватила поперек другую, более двух аршин, следовательно, около пуда весом; возня продолжалась около десяти минут, наконец пойманная перестала биться, и победительница опустилась с ней на дно.", Image = "https://spinningpro.ru/wp-content/uploads/2019/10/schuka21-740x474.jpg" };
             Fish f16 = new Fish { Name = "Язь", Description = "Язь (Leuciscus idus) — рыба семейства карповых, имеет внешнее сходство с плотвой. В длину язь достигает 0,7 м, весом — 2-3 кг; встречаются более крупные особи. Цвет — серо-серебристый, на спине темнее, чем на брюхе. Плавники имеют розово-оранжевый оттенок. Язь — пресноводная рыба, однако может жить и в полупресной воде морских заливов. Распространен в водоемах Европы и большей части Сибири. Рацион язя состоит из растительной и животной пищи (насекомые, моллюски, черви). Нерест происходит во второй половине весны.", Image = "https://static.ohotniki.ru/upload/ohotniki/475/51/6b/52/DETAIL_PICTURE_639224_41375549.jpg" };
-
             Lake l1 = new Lake 
             {
                 Name = "Нарочь",
@@ -256,9 +256,472 @@ namespace FishWithAuth.Models
                 Image = "https://images.tomas.by/i3/firms/49/5287/5287987/lodka-pvh-nyrok-260-nd_600ee5afbf0208a_1024x3000_1.jpg"
             };
 
+            //!!!!!!!!!!!
 
-            //пример связи
-            l1.Fishes.Add(f1);
+            Bait bt1 = new Bait
+            {
+                Name = "Мотыль",
+                Description = "Мотыль - красный червячок-личинка комара долгоножки - составляет любимую насадку рыболовов при ловле плотвы, ельца, подуста, ерша и др. Вообще почти все рыбы берут на мотыля с жадностью: мотыль виден издалека, а красный цвет особенно привлекателен рыбе и, кроме того, рыба находит в нем знакомую добычу. Мотыль встречается почти во всякое время года, как в реках, так и в прудах, но чаще в последних, так как живет в иле, откуда его добывают, вычерпывая ил решетами и другими подобными снарядами и потом промывая.",
+                Image = "https://fishingwiki.ru/images/thumb/8/8f/%D0%9C%D0%BE%D1%82%D1%8B%D0%BB%D1%8C.jpg/161px-%D0%9C%D0%BE%D1%82%D1%8B%D0%BB%D1%8C.jpg"
+            };
+
+            Bait bt2 = new Bait
+            {
+                Name = "Опарыш",
+                Description = "Опарыш – это не только личинка синей мухи, но и отменная наживка для белой рыбы. На реке хорошо берет (особенно по весне) уклейка, плотва, густера, окунь и прочая рыба. Опарыш по уловистости не уступает мотылю и широко используется рыболовами в качестве зимней приманки. Опарыш хорошо насаживается на крючок, долго держится и по видимому испускает привлекательный для рыбы запах, так как зачастую сильно выручает при игнорировании других наживок. Так же неприхотлив он и к хранению. Вдобавок ко всему может использоваться в качестве наживки как зимой, так и летом.",
+                Image = "https://fishingwiki.ru/images/thumb/e/e9/%D0%9E%D0%BF%D0%B0%D1%80%D1%8B%D1%88.jpg/161px-%D0%9E%D0%BF%D0%B0%D1%80%D1%8B%D1%88.jpg"
+            };
+
+            Bait bt3 = new Bait
+            {
+                Name = "Личинка майского жука",
+                Description = "Майский жук, или хрущ, появляющийся весной в садах, служит приманкой при ловле нахлыстом и на донку голавля, язя, жереха и других рыб. Отличной наживкой являются жуки – лозовики, которые питаются листьями ивы. Рыба более привычна к его запаху и вкусу.",
+                Image = "https://fishingwiki.ru/images/thumb/5/54/%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B6%D1%83%D0%BA%D0%B0.jpg/163px-%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B6%D1%83%D0%BA%D0%B0.jpg"
+            };
+
+            Bait bt4 = new Bait
+            {
+                Name = "Личинка ручейника",
+                Description = "Ручейник (шитик) – личинка луговой бабочки, которая обитает поблизости от водоёмов. Большинство рыболовов при слове «ручейник» вспоминают саму лавру (личинку), которая ползает по дну водоёмов в домике, построенном из песка, камушков, листиков и тростниковых трубочек. Как раз такую личинку мы и применяем, чаще всего, для наживки, а нахлыстовики, нередко используют и саму бабочку или мушек имитирующих её.",
+                Image = "https://fishingwiki.ru/images/thumb/e/e6/%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D1%80%D1%83%D1%87%D0%B5%D0%B9%D0%BD%D0%B8%D0%BA%D0%B0.jpg/180px-%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D1%80%D1%83%D1%87%D0%B5%D0%B9%D0%BD%D0%B8%D0%BA%D0%B0.jpg"
+            };
+
+            Bait bt5 = new Bait
+            {
+                Name = "Короед",
+                Description = "Короед (закорник, подкорыш) — общее название, которое дали рыболовы личинкам некоторых видов жуков-древоточцев, откладывающих яйца под кору пней, поваленных или высохших на корню деревьев. На короеда прекрасно клюют практически все рыбы. Например, по последнему льду на короеда ловят леща, окуня, язя, плотву.",
+                Image = "https://fishingwiki.ru/images/thumb/4/40/%D0%9A%D0%BE%D1%80%D0%BE%D0%B5%D0%B4.jpg/173px-%D0%9A%D0%BE%D1%80%D0%BE%D0%B5%D0%B4.jpg"
+            };
+
+            Bait bt6 = new Bait
+            {
+                Name = "Стрекоза",
+                Description = "Стрекоза — отличнейшая наживка для ловли крупной рыбы. Это та самая большая стрекоза-коромысло, «чертова игла», которая все лето порхает над рекой, любит садиться на удилища перед носом задремавшего рыболова, качается на его поплавках.",
+                Image = "https://fishingwiki.ru/images/thumb/0/0b/%D0%A1%D1%82%D1%80%D0%B5%D0%BA%D0%BE%D0%B7%D0%B0.jpg/180px-%D0%A1%D1%82%D1%80%D0%B5%D0%BA%D0%BE%D0%B7%D0%B0.jpg"
+            };
+
+            Bait bt7 = new Bait
+            {
+                Name = "Дождевой червь",
+                Description = "Дождевые черви — это довольно крупные беспозвоночные, имеющие размер до 3 метров в длину. Зеленные черви которые обитают на территории России относятся к отряду Haplotaxida (представители данного отряда обитают на всей территории Земли, за исключением Антарктиды) и к семейству Lumbricidae, которое включает в себя около 200 видов. В России обитает порядка 97 представителей данного семейства. Значение земляных червей для биосферы земли очень трудно переоценить. Они поедают отмершие растительные ткани и продукты жизнедеятельности животных затем это всё переваривают и перемешивают полученную массу с почвой. Эту особенность научился использовать человек в своих целях для получения ценнейшего удобрения — биогумуса или вермикомпоста.",
+                Image = "https://fishingwiki.ru/images/thumb/8/80/%D0%94%D0%BE%D0%B6%D0%B4%D0%B5%D0%B2%D0%BE%D0%B9_%D1%87%D0%B5%D1%80%D0%B2%D1%8C.jpg/174px-%D0%94%D0%BE%D0%B6%D0%B4%D0%B5%D0%B2%D0%BE%D0%B9_%D1%87%D0%B5%D1%80%D0%B2%D1%8C.jpg"
+            };
+
+            Bait bt8 = new Bait
+            {
+                Name = "Личинка миноги",
+                Description = "Личинка миноги, которую называют пескоройка, является весьма результативной наживкой. Ее не обойдет стороной судак и щука. Но более всего ее любит голавль.",
+                Image = "https://fishingwiki.ru/images/thumb/8/81/%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D0%BC%D0%B8%D0%BD%D0%BE%D0%B3%D0%B8.jpg/180px-%D0%9B%D0%B8%D1%87%D0%B8%D0%BD%D0%BA%D0%B0_%D0%BC%D0%B8%D0%BD%D0%BE%D0%B3%D0%B8.jpg"
+            };
+
+
+            Bait bt9 = new Bait
+            {
+                Name = "Навозный червь",
+                Description = "Навозный червь – один из важнейших элементов хорошей рыбалки. Рыбаки с удовольствием сами разводят навозных червей, чтобы с удовольствием предаться долгой и обильной рыбалке. Ведь на него ловятся огромной количество разных видов рыб, например, окунь, судак, хищные и мирные рыбы.",
+                Image = "https://fishingwiki.ru/images/thumb/6/62/%D0%9D%D0%B0%D0%B2%D0%BE%D0%B7%D0%BD%D1%8B%D0%B9_%D1%87%D0%B5%D1%80%D0%B2%D1%8C.jpg/160px-%D0%9D%D0%B0%D0%B2%D0%BE%D0%B7%D0%BD%D1%8B%D0%B9_%D1%87%D0%B5%D1%80%D0%B2%D1%8C.jpg"
+            };
+
+
+            Bait bt10 = new Bait
+            {
+                Name = "Живец",
+                Description = "Живец — небольшая живая рыба, используемая для насадки на рыболовные крючки в качестве наживки для ловли хищной рыбы, например при ловле щук. В качестве живца чаще всего используют плотву, красноперку, подъязка, окуньков, карасиков, уклейку, голавлика, пескариков и др. Не пригодны лишь лини, на них хищники не клюют.",
+                Image = "https://fishingwiki.ru/images/thumb/f/f8/%D0%96%D0%B8%D0%B2%D0%B5%D1%86.jpg/149px-%D0%96%D0%B8%D0%B2%D0%B5%D1%86.jpg"
+            };
+
+            Bait bt11= new Bait
+            {
+                Name = "Муха",
+                Description = "Муха — лучшая летняя наживка для верховой рыбы. Сервис сейчас дошел до такого уровня, что в магазине можно купить, прямо перед рыбалкой, и свежих червей, и свежих опарышей, и любую мастырку и всё, что ты пожелаешь, но, кроме живых мух. А ведь всем хорошо известно, что навозная (или зелёная) муха является лучшей наживкой для ловли таких рыб, как красноперка, плотва, уклейка, голавль и другие.",
+                Image = "https://fishingwiki.ru/images/thumb/8/8a/%D0%9C%D1%83%D1%85%D0%B0_%D0%BD%D0%B0%D0%B6%D0%B8%D0%B2%D0%BA%D0%B8.jpg/138px-%D0%9C%D1%83%D1%85%D0%B0_%D0%BD%D0%B0%D0%B6%D0%B8%D0%B2%D0%BA%D0%B8.jpg"
+            };
+
+            Bait bt12 = new Bait
+            {
+                Name = "Бутерброд",
+                Description = "Бутерброд — наживка, состоящая из двух кормов, помещаемых на одном крючке. Рыбалка требует от рыболова изобретательности; это относится и к выбору приманки. Насаживание на один крючок двух и более разных приманок иногда приносит хороший результат. Такая комбинированная приманка («бутерброд») готовится из приманок, примерно одинаковых по размеру. Хорошо, когда приманки контрастируют друг с другом, например приманки растительная и животная (кукуруза и мотыль) или светлая и темная (опарыш и червь). Так у рыболова появится больше шансов узнать о вкусовых пристрастиях рыбы в данном месте ловли.",
+                Image = "https://fishingwiki.ru/images/thumb/0/0c/%D0%91%D1%83%D1%82%D0%B5%D1%80%D0%B1%D1%80%D0%BE%D0%B4.jpg/176px-%D0%91%D1%83%D1%82%D0%B5%D1%80%D0%B1%D1%80%D0%BE%D0%B4.jpg"
+            };
+
+            Bait bt13 = new Bait
+            {
+                Name = "Кусочки рыбы",
+                Description = "Куски рыбы являются очень хорошей наживкой при ловле всевозможных хищных рыб и не только пресноводных, многие морские рыбы тоже отлично ловятся нарезку из рыбы. В качестве наживки, конечно лучше применять кусочки свежей рыбы, но если таковой в наличии нет, то годится и любая другая свежемороженая рыба.",
+                Image = "https://fishingwiki.ru/images/thumb/f/f2/%D0%9A%D1%83%D1%81%D0%BE%D1%87%D0%BA%D0%B8_%D0%BC%D1%8F%D1%81%D0%B0.png/120px-%D0%9A%D1%83%D1%81%D0%BE%D1%87%D0%BA%D0%B8_%D0%BC%D1%8F%D1%81%D0%B0.png"
+            };
+
+            Bait bt14 = new Bait
+            {
+                Name = "Кусочки мяса",
+                Description = "Кусочек любого мяса является распространенной наживкой, особенно для ловли голавля и усача. Не следует при плохом клеве весь день использовать один и тот же кусок мяса и ждать отличного улова. Большинство мясных наживок в воде очень быстро теряют свой запах и не привлекают рыб, а потому от них практически не бывает пользы. Кроме того, важно, чтобы кусочек мяса был достаточно твердым и во время броска не слетал с крючка.",
+                Image = "https://fishingwiki.ru/images/thumb/5/5f/%D0%9A%D1%83%D1%81%D0%BE%D1%87%D0%BA%D0%B8_%D1%80%D1%8B%D0%B1%D1%8B.jpg/180px-%D0%9A%D1%83%D1%81%D0%BE%D1%87%D0%BA%D0%B8_%D1%80%D1%8B%D0%B1%D1%8B.jpg"
+            };
+
+            Bait bt15 = new Bait
+            {
+                Name = "Сало",
+                Description = "Сало выступает в качестве наживки для такой рыбы, как лещ, голавль, сазан, густера, язь, крупная плотва и чехонь. Многие рыболовы отмечают результативность такой наживки.",
+                Image = "https://fishingwiki.ru/images/thumb/3/36/%D0%A1%D0%B0%D0%BB%D0%BE.jpg/180px-%D0%A1%D0%B0%D0%BB%D0%BE.jpg"
+            };
+
+
+            FishRod r1 = new FishRod
+            {
+                Name = "Маховая удочка",
+                Description = "Это самая простая из поплавчанок, современная модификация старинного орехового хлыста. В настоящее время мах – это легкое телескопическое удилище, длина которого может превышать десяти метров. Леска к бланку крепится через коннектор, закрепленный на его кончике. При ловле крупной рыбы, для облегчения ее вываживания, сначала может крепиться отрезок упругой резинки.",
+                Image = "data:image/jpeg;base64,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"
+            };
+
+            FishRod r2 = new FishRod
+            {
+                Name = "Болонская удочка,",
+                Description = "Категория видов удилищ для ловли с поплавком. В болонке уже присутствует катушка, которая помогает забросить оснастку на более дальнюю дистанцию, либо способствовать проводочной ловле на течении.",
+                Image = "data:image/jpeg;base64,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"
+            };
+
+            FishRod r3 = new FishRod
+            {
+                Name = "Матчевая удочка",
+                Description = "Самая дальнобойная из поплавчанок. Достижению максимальной дальности способствуют не только специальный строй матчевого удилища, но и применение катушек с переднеконусной шпулей, лесок минимальной толщины и поплавков особой формы со встроенной огрузкой.",
+                Image = "https://rybalca.com/wp-content/uploads/2012/02/matchevaya-udochka-.jpg"
+            };
+
+            FishRod r4 = new FishRod
+            {
+                Name = "Штекерная удочка,",
+                Description = "Изначально название соединения колен дало название и всей снасти. Современное штекерное удилище состоит из кита и штекерных колен. Кит, по сути, короткий телескопический бланк с продетой в него резинкой-амортизатором. Он вставляется в штекерные колена, длина которых может достигать до 16-20 метров. В руке такую поплавчанку не удержать, поэтому штекерные колена передвигаются по специально установленным роликам, а рыболов вываживает рыбу исключительно китом.",
+                Image = "https://klevyj.com/wp-content/uploads/2017/07/shtekernoe-u-foto-4.jpg"
+            };
+
+            FishRod r5 = new FishRod
+            {
+                Name = "Закидушка",
+                Description = "Толстая леска, намотанная на мотовило, грузило и пару поводков с крючком – вот как выглядит простейшая рыболовная снасть. Забрасывалась она в воду рукой, закидывалась, за что и получила свое название.",
+                Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6uXbjVPcPMKlutCyva6WY0Sh9HLmZTeVYjg&usqp=CAU"
+            };
+
+            FishRod r6 = new FishRod
+            {
+                Name = "Поставуша",
+                Description = " Та же, в общем, закидушка, только используемая для ловли хищника. Ее отличала более толстая леска и плетеные поводки, оснащенные крупными живцовыми крючками.",
+                Image = "https://podlednik.ru/wp-content/uploads/2018/08/zherlitsa-2.jpg"
+            };
+
+            FishRod r7 = new FishRod
+            {
+                Name = "Донка с резиновым амортизатором",
+                Description = "Модифицированная закидушка. За счет использования резинового амортизатора появилась возможность не перезабрасывать снасть всякий раз после вываживания, а спокойно отпускать в то же место, где и произошла поклевка. Резинка также дала возможность использования в снасти большего количества поводков с крючками. У самых жадных рыбаков оно переваливает за десяток. ",
+                Image = "data:image/jpeg;base64,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"
+            };
+
+            FishRod r8 = new FishRod
+            {
+                Name = "Донка с катушкой",
+                Description = "Появление безинерционных катушек позволило производить дальние забросы донной оснастки. Для построения этой снасти используется прочное удилище с большим тестом, в ходу китайские удилища типа «Крокодил», за что многие продвинутые рыболовы эту снасть окрестили «дубиной». Однако применение современных оснасток вывело эту снасть в разряд самых уловистых, а многие ее поклонники даже и не хотят переходить на популярный фидер.",
+                Image = "https://fishmanual.ru/images/2018/11/7/zzzzj2.jpg"
+            };
+
+            FishRod r9 = new FishRod
+            {
+                Name = "Фидерное удилище",
+                Description = "Эта английская донка с уверенностью завоевывает себе поклонников. Изящное удилище со специальным строем, применение кормушек и петлевых оснасток по праву вывело этот способ на первое место среди донных снастей.",
+                Image = "https://lh6.googleusercontent.com/aJDhYsI9bylzaqBqWthOLvsV3WZe7qUI_UammLP3BbXEPlUD-zt5YMUr65f1OtrtmXKPbHeudsl68R1iUVZNnzrslPtJ5i8L4eSuas0ns9EbuD7Xc1bhLlmC4P7esTRZ6q_c155g"
+            };
+
+            FishRod r10 = new FishRod
+            {
+                Name = "Спиннинги",
+                Description = "Так называется ловля воблерами или блеснами на равномерной или рывковой проводках. Обычно это удилища быстрого строя, способные передать приманке малейшую анимацию.",
+                Image = "data:image/jpeg;base64,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"
+            };
+
+            FishRod r11 = new FishRod
+            {
+                Name = "Джиговые палки",
+                Description = "Эти удилища предназначены для ловли на силиконовые приманки с разнообразной огрузкой. У таких бланков кончик медленного строя, который показывает всю информацию, полученную при проводке.",
+                Image = "https://podsekai.by/image/data/SPINNINGI/Ayashi/newkegon702ul.jpg"
+            };
+
+            FishRod r12 = new FishRod
+            {
+                Name = "Нахлыст",
+                Description = "Удилище этого типа предназначено для заброса легких приманок-мушек с применением конусного шнура. Именно вес этого элемента снасти и позволяет достигнуть нужной дистанции для ловли.",
+                Image = "https://wosho.ru/wp-content/uploads/2017/03/lovlja-ryby-bytovym-nahlystom.jpg"
+            };
+
+
+            FishRod r13 = new FishRod
+            {
+                Name = "Летние жерлицы",
+                Description = "редназначены для ловли хищника на живца. Подвешиваются над водой за ветку дерева или специально воткнутый шест.",
+                Image = "https://lovlyavsem.ru/wp-content/uploads/2016/11/letnyaya-zherlica-1.jpg"
+            };
+
+            FishRod r14 = new FishRod
+            {
+                Name = "Кружки",
+                Description = "Те же жерлицы, только плавучие.",
+                Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6nqO_-sNQYbARNEF_WuGg27yZIOPHLQw_cA&usqp=CAU"
+            };
+
+            FishRod r15 = new FishRod
+            {
+                Name = "Кораблик",
+                Description = "Это приспособление для ловли на дальнем расстоянии от берега на легкие приманки.",
+                Image = "data:image/jpeg;base64,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"
+            };
+
+
+            Hooks h1 = new Hooks
+            {
+                Name = "Офсетный крючок Crazy Fish",
+                Description = "Этот одинарный крючок создан для джиговой ловли. Round Bent Fixative Shank крючок с большим ушком, идеально подходит для ловли с помощью шарнирных груз-головок «чебурашек». Новая система фиксации крючка в виде W-образного изгиба на цевье. Этот изгиб за счёт силы трения улучшает фиксацию приманки на крючке и позволяет ей дольше оставаться в рабочем состоянии даже после нескольких поклёвок рыбы. ",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/round_bent_fixative_shank.jpg?itok=lpdxtVw1"
+            };
+
+            Hooks h2 = new Hooks
+            {
+                Name = "Mikado SENSUAL - SODE W/RING",
+                Description = "SENSUAL – современные крючки и тройники изготавливаемые из обогащённой карбоновой стали высшего качества. Использование двух технологий заточки – механической и химической, совмещённых с постоянным контролем качества жала крючка даёт в результате идеальную повторяемость производимых крючков. Все крючки SENSUAL имеют «встроенную» антикоррозионную защиту.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/23_20.jpg?itok=5pRHYBbT"
+            };
+
+            Hooks h3 = new Hooks
+            {
+                Name = "SENSUAL - TANAGO W/RING",
+                Description = "SENSUAL – современные крючки и тройники изготавливаемые из обогащённой карбоновой стали высшего качества. Использование двух технологий заточки – механической и химической, совмещённых с постоянным контролем качества жала крючка даёт в результате идеальную повторяемость производимых крючков. Все крючки SENSUAL имеют «встроенную» антикоррозионную защиту. Специальное поверхностное покрытие дополнительно защищает от ржавчины.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/1003.png?itok=IyW3fhHs"
+            };
+
+            Hooks h4 = new Hooks
+            {
+                Name = "Mikado SENSUAL - CHINTA W/RING",
+                Description = "SENSUAL – современные крючки и тройники изготавливаемые из обогащённой карбоновой стали высшего качества. Использование двух технологий заточки – механической и химической, совмещённых с постоянным контролем качества жала крючка даёт в результате идеальную повторяемость производимых крючков. Все крючки SENSUAL имеют «встроенную» антикоррозионную защиту. Специальное поверхностное покрытие дополнительно защищает от ржавчины.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/9550.png?itok=LprdebQy"
+            };
+
+            Hooks h5 = new Hooks
+            {
+                Name = "OWNER SODE",
+                Description = "Это тонкие и острые крючки формы «Кристалл» или, как было принято раньше называть такую форму, — «крутолобые». Крючки имеют бронзовое покрытие. Отлично подходят для мотыля и опарыша. Но не стоит насаживать на эти крючки перловку — она будет держаться на них хуже, чем на других.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/50282.jpg?itok=4Iw1Pi83"
+            };
+
+            Hooks h6 = new Hooks
+            {
+                Name = "OWNER STRAW HOOK",
+                Description = "Крючки этой серии отличаются оригинальной формой. Удлиненное цевье с сильно скошенным загибом, коротким поддевом и миниатюрной бородкой обеспечивают удобное использование самых разнообразных насадок. И червь, и мотыль, и опарыш, и всевозможные зерновые приманки легко насаживаются и прочно сидят на крючке. Рекомендуются для поплавочных оснасток при ловле как на течении, так и в стоячей воде.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/53157.jpeg?itok=9Rh3NL7Q"
+            };
+
+            Hooks h7 = new Hooks
+            {
+                Name = "OWNER KAIZU",
+                Description = "Форма загиба этих крючков сконструирована исключительно с учетом особенностей анатомического строения ротовой полости леща, в частности, его выдвижных челюстей.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/116.png?itok=hlDQ5WxA"
+            };
+
+            Hooks h8 = new Hooks
+            {
+                Name = "OWNER ISEAMA-X",
+                Description = "Крючки OWNER ISEAMA-X имеют короткое цевье, идеально круглый загиб, нормальной длины поддев, острейшее игольной заточки Super Needle Point чуть отогнутое внутрь жало, аккуратное колечко для привязки. Прочность и надежность крючков OWNER ISEAMA-X позволяют использовать их в самых разнообразных условиях рыбалки при ловле как мелкой, так и трофейной рыбы в оснастках, как донных, так и поплавочных снастей.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/56501-1.jpg?itok=chil7n0m"
+            };
+
+            Hooks h9 = new Hooks
+            {
+                Name = "OWNER PINТ HOOK",
+                Description = "Синий, колечко, отогнут. жало",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/_own_523c069509aba_200x200.jpg?itok=ddMTyO9W"
+            };
+
+            Hooks h10 = new Hooks
+            {
+                Name = "OWNER KISU-K",
+                Description = "Благодаря тончайшей проволоке и покрытию красного цвета крючки этой серии по праву считаются мотыльными. Тем не менее, они так же хорошо подходят для ловли на ручейника и некрупного червя. Имеют удлиненное цевье с круглым загибом, лопаточку для привязки.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/50145.jpg?itok=aKWGaQlq"
+            };
+
+            Hooks h11 = new Hooks
+            {
+                Name = "OWNER S-363",
+                Description = "Серия поводков Owner S-363 предназначена для ловли белой рыбы поплавочными и донными снастями. Длина поводка составляет 65 см, отсутствие петельки позволяет регулировать ее прямо на месте ловли. Размеры крючков Owner 50363 Chika внутри серии изменяются от 18 до 12 номера по международной классификации. Соответственно размеру крючка изменяется и диаметр поводка (от 0.09 до 0.12 мм). И если самые маленькие крючки на тонкой леске предназначены для ловли мелкой рыбы, то крупные крючки с прочной леской легко справятся и с трофейными экземплярами. Крючки этой серии имеют стойкое красное покрытие.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/363.jpeg?itok=tskxNrus"
+            };
+
+            Hooks h12 = new Hooks
+            {
+                Name = "CarpHunter CURVE SHANK teflon coating",
+                Description = "Крючек карповый CarpHunter CURVE SHANK teflon coating - имеет агрессивно загнутое цевье, которое позволяет крючку отлично разворачиваться во рту рыбы и производить засечку. Темное матовое покрытие не отражает свет и делает крючок мало заметным в воде. ",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/8462.jpg?itok=x8IctnpT"
+            };
+
+            Hooks h13 = new Hooks
+            {
+                Name = "Mikado SENSUAL FEEDER",
+                Description = "SENSUAL – современные крючки и тройники изготавливаемые из обогащённой карбоновой стали высшего качества. Использование двух технологий заточки – механической и химической, совмещённых с постоянным контролем качества жала крючка даёт в результате идеальную повторяемость производимых крючков. Все крючки SENSUAL имеют «встроенную» антикоррозионную защиту.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/09_3.jpg?itok=H_k1qtQ3"
+            };
+
+            Hooks h14 = new Hooks
+            {
+                Name = "OWNER YAMAJIN",
+                Description = "Широкая линейка размеров крючков данной серии позволяет с успехом сделать выбор подходящего крючка для ловли как мелкой, так и трофейной рыбы. Самое стойкое на сегодняшний день покрытие Black Chrome™ обеспечивает возможность рыбалки как в соленой, так и в пресной воде. Крючки имеют удлиненное цевье с круглым загибом, колечко для привязки.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/53853.jpeg?itok=kZnimVoI"
+            };
+
+            Hooks h15 = new Hooks
+            {
+                Name = "Mikado SENSUAL SODE ",
+                Description = "SENSUAL – современные крючки и тройники изготавливаемые из обогащённой карбоновой стали высшего качества. Использование двух технологий заточки – механической и химической, совмещённых с постоянным контролем качества жала крючка даёт в результате идеальную повторяемость производимых крючков. Все крючки SENSUAL имеют «встроенную» антикоррозионную защиту.",
+                Image = "https://newfish.by/sites/default/files/styles/image_on_page/public/product/images/1004-2.jpg?itok=n9staLT7"
+            };
+
+
+            f1.Hookses.AddRange(new List<Hooks>() { h1, h2, h3, h4 });
+            f1.FishRods.AddRange(new List<FishRod>() { r1, r2, r3, r4 });
+            f1.Baits.AddRange(new List<Bait>() { bt1, bt2, bt3, bt4 });
+            f1.Lakes.AddRange(new List<Lake>() { l1, l2, l3, l4 });
+
+            f2.Hookses.AddRange(new List<Hooks>() { h5, h6, h7, h8 });
+            f2.FishRods.AddRange(new List<FishRod>() { r5, r6, r7, r8 });
+            f2.Baits.AddRange(new List<Bait>() { bt5, bt6, bt7, bt8 });
+            f2.Lakes.AddRange(new List<Lake>() { l5, l6, l7, l8 });
+
+            f3.Hookses.AddRange(new List<Hooks>() { h9, h10, h11, h12 });
+            f3.FishRods.AddRange(new List<FishRod>() { r9, r10, r11, r12 });
+            f3.Baits.AddRange(new List<Bait>() { bt9, bt10, bt11, bt12 });
+            f3.Lakes.AddRange(new List<Lake>() { l9, l10, l11, l12 });
+
+            f4.Hookses.AddRange(new List<Hooks>() { h13, h14, h15, h1 });
+            f4.FishRods.AddRange(new List<FishRod>() { r13, r14, r15, r1 });
+            f4.Baits.AddRange(new List<Bait>() { bt13, bt14, bt15, bt1 });
+            f4.Lakes.AddRange(new List<Lake>() { l13, l14, l15, l1 });
+
+            f5.Hookses.AddRange(new List<Hooks>() { h13, h14, h15, h1 });
+            f5.FishRods.AddRange(new List<FishRod>() { r13, r14, r15, r1 });
+            f5.Baits.AddRange(new List<Bait>() { bt13, bt14, bt15, bt1 });
+            f5.Lakes.AddRange(new List<Lake>() { l13, l14, l15, l1 });
+
+            f6.Hookses.AddRange(new List<Hooks>() { h2, h3, h4, h5 });
+            f6.FishRods.AddRange(new List<FishRod>() { r2, r3, r4, r5 });
+            f6.Baits.AddRange(new List<Bait>() { bt2, bt3, bt4, bt5 });
+            f6.Lakes.AddRange(new List<Lake>() { l2, l3, l4, l5 });
+
+            f7.Hookses.AddRange(new List<Hooks>() { h2, h3, h4, h5 });
+            f7.FishRods.AddRange(new List<FishRod>() { r2, r3, r4, r5 });
+            f7.Baits.AddRange(new List<Bait>() { bt2, bt3, bt4, bt5 });
+            f7.Lakes.AddRange(new List<Lake>() { l2, l3, l4, l5 });
+
+            f8.Hookses.AddRange(new List<Hooks>() { h6, h7, h8, h9 });
+            f8.FishRods.AddRange(new List<FishRod>() { r6, r7, r8, r9 });
+            f8.Baits.AddRange(new List<Bait>() { bt6, bt7, bt8, bt9 });
+            f8.Lakes.AddRange(new List<Lake>() { l6, l7, l8, l9 });
+
+            f9.Hookses.AddRange(new List<Hooks>() { h10, h11, h12, h13 });
+            f9.FishRods.AddRange(new List<FishRod>() { r10, r11, r12, r13 });
+            f9.Baits.AddRange(new List<Bait>() { bt10, bt11, bt12, bt13 });
+            f9.Lakes.AddRange(new List<Lake>() { l10, l11, l12, l13 });
+
+            f10.Hookses.AddRange(new List<Hooks>() { h14, h15, h1, h2 });
+            f10.FishRods.AddRange(new List<FishRod>() { r14, r15, r1, r2 });
+            f10.Baits.AddRange(new List<Bait>() { bt14, bt15, bt1, bt2 });
+            f10.Lakes.AddRange(new List<Lake>() { l14, l15, l1, l2 });
+
+            f11.Hookses.AddRange(new List<Hooks>() { h3, h4, h5, h6 });
+            f11.FishRods.AddRange(new List<FishRod>() { r3, r4, r5, r6 });
+            f11.Baits.AddRange(new List<Bait>() { bt3, bt4, bt5, bt6 });
+            f11.Lakes.AddRange(new List<Lake>() { l3, l4, l5, l6 });
+
+            f12.Hookses.AddRange(new List<Hooks>() { h7, h8, h9, h10 });
+            f12.FishRods.AddRange(new List<FishRod>() { r7, r8, r9, r10 });
+            f12.Baits.AddRange(new List<Bait>() { bt7, bt8, bt9, bt10 });
+            f12.Lakes.AddRange(new List<Lake>() { l7, l8, l9, l10 });
+
+            f13.Hookses.AddRange(new List<Hooks>() { h11, h12, h13, h14 });
+            f13.FishRods.AddRange(new List<FishRod>() { r11, r12, r13, r14 });
+            f13.Baits.AddRange(new List<Bait>() { bt11, bt12, bt13, bt14 });
+            f13.Lakes.AddRange(new List<Lake>() { l11, l12, l13, l14 });
+
+            f14.Hookses.AddRange(new List<Hooks>() { h15, h1, h2, h3 });
+            f14.FishRods.AddRange(new List<FishRod>() { r15, r1, r2, r3 });
+            f14.Baits.AddRange(new List<Bait>() { bt15, bt1, bt2, bt3 });
+            f14.Lakes.AddRange(new List<Lake>() { l15, l1, l2, l3 });
+
+            f15.Hookses.AddRange(new List<Hooks>() { h4, h5, h6, h7 });
+            f15.FishRods.AddRange(new List<FishRod>() { r4, r5, r6, r7 });
+            f15.Baits.AddRange(new List<Bait>() { bt4, bt5, bt6, bt7 });
+            f15.Lakes.AddRange(new List<Lake>() { l4, l5, l6, l7 });
+
+
+            l1.Boats.AddRange(new List<Boat>() { b1, b2, b3, b4 });
+            l2.Boats.AddRange(new List<Boat>() { b5, b6, b7, b8 });
+            l3.Boats.AddRange(new List<Boat>() { b9, b10, b11, b12 });
+            l4.Boats.AddRange(new List<Boat>() { b13, b14, b15, b1 });
+            l5.Boats.AddRange(new List<Boat>() { b2, b3, b4, b5 });
+            l6.Boats.AddRange(new List<Boat>() { b6, b7, b8, b9 });
+            l7.Boats.AddRange(new List<Boat>() { b10, b11, b12, b13 });
+            l8.Boats.AddRange(new List<Boat>() { b14, b15, b1, b2 });
+            l9.Boats.AddRange(new List<Boat>() { b3, b4, b5, b6 });
+            l10.Boats.AddRange(new List<Boat>() { b7, b8, b9, b10 });
+            l11.Boats.AddRange(new List<Boat>() { b11, b12, b13, b14 });
+            l12.Boats.AddRange(new List<Boat>() { b15, b1, b2, b3 });
+            l13.Boats.AddRange(new List<Boat>() { b4, b5, b6, b7 });
+            l14.Boats.AddRange(new List<Boat>() { b8, b9, b10, b11 });
+            l15.Boats.AddRange(new List<Boat>() { b12, b13, b14, b15 });
+
+
+            db.Hookses.Add(h1);
+            db.Hookses.Add(h2);
+            db.Hookses.Add(h3);
+            db.Hookses.Add(h4);
+            db.Hookses.Add(h5);
+            db.Hookses.Add(h6);
+            db.Hookses.Add(h7);
+            db.Hookses.Add(h8);
+            db.Hookses.Add(h9);
+            db.Hookses.Add(h10);
+            db.Hookses.Add(h11);
+            db.Hookses.Add(h12);
+            db.Hookses.Add(h13);
+            db.Hookses.Add(h14);
+            db.Hookses.Add(h15);
+
+            db.FishRods.Add(r1);
+            db.FishRods.Add(r2);
+            db.FishRods.Add(r3);
+            db.FishRods.Add(r4);
+            db.FishRods.Add(r5);
+            db.FishRods.Add(r6);
+            db.FishRods.Add(r7);
+            db.FishRods.Add(r8);
+            db.FishRods.Add(r9);
+            db.FishRods.Add(r10);
+            db.FishRods.Add(r11);
+            db.FishRods.Add(r12);
+            db.FishRods.Add(r13);
+            db.FishRods.Add(r14);
+            db.FishRods.Add(r15);
+  
+
+
+            db.Baits.Add(bt1);
+            db.Baits.Add(bt2);
+            db.Baits.Add(bt3);
+            db.Baits.Add(bt4);
+            db.Baits.Add(bt5);
+            db.Baits.Add(bt6);
+            db.Baits.Add(bt7);
+            db.Baits.Add(bt8);
+            db.Baits.Add(bt9);
+            db.Baits.Add(bt10);
+            db.Baits.Add(bt11);
+            db.Baits.Add(bt12);
+            db.Baits.Add(bt13);
+            db.Baits.Add(bt14);
+            db.Baits.Add(bt15);
+     
 
 
             db.Fishes.Add(f1);

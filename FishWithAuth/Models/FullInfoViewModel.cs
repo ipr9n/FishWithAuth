@@ -12,6 +12,9 @@ namespace FishWithAuth.Models
         public List<Lake> Lakes { get; set; }
         public List<Boat> Boats { get; set; }
         public List<Fish> Fishes { get; set; }
+        public List<Bait> Baits { get; set; }
+        public List<FishRod> Rods { get; set; }
+        public List<Hooks> Hooks { get; set; }
 
     }
 }

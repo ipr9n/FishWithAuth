@@ -6,37 +6,53 @@
             <th scope="col">#</th>
             <th scope="col">Название</th>
             <th scope="col">Описание</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <th scope="row">@item.Id</th>
-    <td>@Html.ActionLink(@item.Name, $"Fish/{item.Id}")</td>
-    <td>@item.Description</td>
-</tr>}
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@Html.ActionLink(@item.Name, $"Fish/{item.Id}")</td>
+                <td>@item.Description</td>
+                <td>
+                    @using (Html.BeginForm("DeleteFish", "Home"))
+                    {
+                        <input type="hidden" name="Id" id="Id" value="@item.Id" />
+                        <input type="submit" value="удалить" />
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 <script>
     $(document).ready(function () {
-        var table = $('#fish-table').DataTable()
+        var table = $('#fish-table').DataTable({
+            'columnDefs': [{
+                'targets': [3], // column index (start from 0)
+                'orderable': false, // set orderable false for selected columns
+            }]
+        })
         // Setup - add a text input to each footer cell
         $('#fish-table thead tr').clone(true).appendTo('#fish-table thead');
         $('#fish-table thead tr:eq(1) th').each(function (i) {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Поиск по ' + title + '" />');
+            if (i != 3) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Поиск по ' + title + '" />');
 
-            $('input', this).on('keyup change', function () {
-                if (table.column(i).search() !== this.value) {
-                    table
-                        .column(i)
-                        .search(this.value)
-                        .draw();
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
 
-                }
-            });
+                    }
+                });
+            }
         });
     })
 </script>
